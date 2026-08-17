@@ -29,7 +29,7 @@ var CONFIG = {
   workshopPlace:  'Online · Zoom',
   organiser:      'Department of Small and Medium Taxation',
   organiserKm:    'នាយកដ្ឋានគ្រប់គ្រងអ្នកជាប់ពន្ធតូចនិងមធ្យម',
-  presenter:      'អ៊ាត់ សួរ (Eath Suo)',
+  presenter:      'ឃុត សុភ័ក្រ្ត (Khut Sopheak)',
 
   // ── តំណភ្ជាប់ · Links (fill these in before running) ──
   joinLink:       'https://example.com/zoom-link',
@@ -89,7 +89,7 @@ function addIdentitySection_(form) {
 
   form.addTextItem()
       .setTitle('ឈ្មោះពេញ (ជាភាសាខ្មែរ)')
-      .setHelpText('ឧ. អ៊ាត់ សួរ')
+      .setHelpText('ឧ. ឃុត សុភ័ក្រ្ត')
       .setRequired(true);
 
   form.addTextItem()

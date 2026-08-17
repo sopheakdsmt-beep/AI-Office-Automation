@@ -24,7 +24,7 @@ var CERT_CONFIG = {
   courseNameKm:   'ការងារ ៨ ម៉ោង — សល់ត្រឹម ២ ម៉ោង',
   organiser:      'Department of Small and Medium Taxation',
   organiserKm:    'នាយកដ្ឋានគ្រប់គ្រងអ្នកជាប់ពន្ធតូចនិងមធ្យម',
-  signer:         'Eath Suo',
+  signer:         'Khut Sopheak',
   signerRole:     'អ្នកបណ្តុះបណ្តាល · Trainer',
   duration:       '60 minutes',
   issueDate:      '14 August 2026',
