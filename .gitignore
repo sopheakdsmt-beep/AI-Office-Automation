@@ -1,0 +1,7 @@
+# Screenshot / scratch output from local verification runs.
+# Kept out of the repo so a stray unset path variable can never
+# sweep test artefacts into a commit again.
+undefined/
+*.png.tmp
+.DS_Store
+Thumbs.db
