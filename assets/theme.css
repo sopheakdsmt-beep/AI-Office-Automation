@@ -1,6 +1,6 @@
 /* ============================================================
    AI Office Automation — Shared Theme
-   Skill Next · Eath Suo
+   Department of Small and Medium Taxation · Eath Suo
    Dark / green workshop identity used across slides, prompt
    library, certificates and teaching tools.
    ============================================================ */
@@ -42,15 +42,15 @@
   --faint:       #4a544e;
 
   /* Type */
-  /* The bundled Khmer face is unicode-range limited to Khmer, so it can
-     sit inside the Latin stack too: Latin glyphs come from Inter, Khmer
-     glyphs from the bundled face. Without this, Khmer appearing inside a
-     Latin-styled element (pill, counter, label) falls through to the
-     generic sans-serif, which on many systems is a bitmap face that
-     breaks Khmer glyph clusters. */
-  --font-latin:  "Inter", "Segoe UI", system-ui, -apple-system,
-                 "AIOA Khmer", "Noto Sans Khmer", "Khmer UI",
-                 "Khmer Sangam MN", "Khmer OS Battambang", sans-serif;
+  /* The bundled Khmer face is unicode-range limited to Khmer, so it is
+     listed FIRST and still never touches Latin text — Latin glyphs fall
+     straight through to Inter. Order matters: `system-ui` resolves via
+     fontconfig on Linux to a family that reports Khmer coverage (through
+     a bitmap fallback that breaks glyph clusters), so anything listed
+     after it would never be reached for Khmer. */
+  --font-latin:  "AIOA Khmer", "Inter", "Segoe UI", system-ui, -apple-system,
+                 "Noto Sans Khmer", "Khmer UI", "Khmer Sangam MN",
+                 "Khmer OS Battambang", sans-serif;
 
   /* Bundled font first, then the faces Windows / macOS / Linux ship with. */
   --font-khmer:  "AIOA Khmer", "Noto Sans Khmer", "Kantumruy Pro",

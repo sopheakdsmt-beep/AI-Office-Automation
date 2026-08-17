@@ -1,6 +1,6 @@
 /* ============================================================
    AI Office Automation — Prompt Library dataset
-   Skill Next · workshop companion
+   Department of Small and Medium Taxation · workshop companion
 
    Every prompt follows the R·T·C·F structure taught in the
    workshop (Role · Task · Context · Format). Placeholders are

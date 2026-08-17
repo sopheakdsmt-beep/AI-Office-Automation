@@ -193,4 +193,4 @@ Format: JSON តែប៉ុណ្ណោះ។ បើរកមិនឃើញ �
 
 ---
 
-*Skill Next · អ៊ាត់ សួរ (Eath Suo) · AI Office Automation*
+*នាយកដ្ឋានពន្ធដារសហគ្រាសខ្នាតតូច និងមធ្យម · អ៊ាត់ សួរ (Eath Suo) · AI Office Automation*

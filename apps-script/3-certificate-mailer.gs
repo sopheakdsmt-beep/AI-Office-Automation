@@ -22,14 +22,15 @@
 var CERT_CONFIG = {
   courseName:     'AI for Office Automation',
   courseNameKm:   'ការងារ ៨ ម៉ោង — សល់ត្រឹម ២ ម៉ោង',
-  organiser:      'Skill Next',
+  organiser:      'Department of Small and Medium Taxation',
+  organiserKm:    'នាយកដ្ឋានពន្ធដារសហគ្រាសខ្នាតតូច និងមធ្យម',
   signer:         'Eath Suo',
-  signerRole:     'Founder · Skill Next',
+  signerRole:     'អ្នកបណ្តុះបណ្តាល · Trainer',
   duration:       '60 minutes',
   issueDate:      '14 August 2026',
 
   certType:       'attendance',   // 'attendance' | 'completion' | 'excellence'
-  idPrefix:       'SN-AIOA-2026-',
+  idPrefix:       'DSMT-AIOA-2026-',
 
   // ថតក្នុង Drive · leave blank to create one automatically
   driveFolderId:  '',
@@ -236,6 +237,7 @@ function buildCertificateHtml_(name, certId, scoreText) {
     '                vertical-align:bottom; }',
     '.sig-line { border-top:1px solid #d9e2dc; padding-top:7px; }',
     '.sig-name { font-size:13px; font-weight:bold; }',
+    '.sig-name-km { font-size:11px; color:#3d4a43; }',
     '.sig-role { font-size:10px; color:#6b7873; }',
     '.footer { margin-top:28px; font-size:9px; color:#6b7873; letter-spacing:1px; }',
     '</style></head><body><div class="page"><div class="outer"><div class="inner">',
@@ -268,6 +270,7 @@ function buildCertificateHtml_(name, certId, scoreText) {
       '</div></td>',
       '<td><div class="sig-line">',
         '<div class="sig-name">', esc3_(CERT_CONFIG.organiser), '</div>',
+        '<div class="sig-name-km">', esc3_(CERT_CONFIG.organiserKm), '</div>',
         '<div class="sig-role">Training Provider</div>',
       '</div></td>',
     '</tr></table>',
@@ -295,7 +298,7 @@ function sendCertificateEmail_(email, name, certId, scoreText, pdfBlob) {
       'padding:34px;border-radius:14px;line-height:1.7">',
 
       '<div style="color:#4ade80;font-size:12px;letter-spacing:2px;',
-      'font-weight:bold;margin-bottom:10px">SKILL NEXT · CERTIFICATE</div>',
+      'font-weight:bold;margin-bottom:10px">DSMT · CERTIFICATE</div>',
 
       '<h1 style="font-size:22px;margin:0 0 18px;color:#fff">',
       'អបអរសាទរ ', esc3_(name || ''), '!</h1>',
@@ -321,7 +324,8 @@ function sendCertificateEmail_(email, name, certId, scoreText, pdfBlob) {
 
       '<div style="border-top:1px solid #22302a;margin-top:28px;padding-top:18px;',
       'color:#7d8b83;font-size:12px">',
-        esc3_(CERT_CONFIG.organiser), ' · ', esc3_(CERT_CONFIG.signer), '<br>',
+        esc3_(CERT_CONFIG.organiserKm), '<br>',
+      esc3_(CERT_CONFIG.organiser), ' · ', esc3_(CERT_CONFIG.signer), '<br>',
         'សំណួរផ្សេងៗ សូមឆ្លើយត្រឡប់មកអ៊ីមែលនេះ។',
       '</div>',
       '</div>'

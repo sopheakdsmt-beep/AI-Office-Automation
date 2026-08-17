@@ -27,7 +27,8 @@ var CONFIG = {
   workshopDate:   '១៤ សីហា ២០២៦',        // display only
   workshopTime:   '១៩:០០ – ២០:០០ (ម៉ោងកម្ពុជា)',
   workshopPlace:  'Online · Zoom',
-  organiser:      'Skill Next',
+  organiser:      'Department of Small and Medium Taxation',
+  organiserKm:    'នាយកដ្ឋានពន្ធដារសហគ្រាសខ្នាតតូច និងមធ្យម',
   presenter:      'អ៊ាត់ សួរ (Eath Suo)',
 
   // ── តំណភ្ជាប់ · Links (fill these in before running) ──
@@ -238,7 +239,7 @@ function addLogisticsSection_(form) {
         'TikTok',
         'មិត្តភក្តិណែនាំ',
         'ក្រុមហ៊ុន / ថ្នាក់លើ',
-        'ធ្លាប់រៀនជាមួយ Skill Next រួចហើយ',
+        'ធ្លាប់ចូលរួមវគ្គបណ្តុះបណ្តាលរបស់នាយកដ្ឋានរួចហើយ',
         'ផ្សេងៗ'
       ])
       .setRequired(true);
@@ -404,7 +405,7 @@ function buildConfirmationEmail_(a) {
     'padding:34px;border-radius:14px;line-height:1.7">',
 
     '<div style="color:#4ade80;font-size:12px;letter-spacing:2px;',
-    'font-weight:bold;margin-bottom:10px">SKILL NEXT · FREE WORKSHOP</div>',
+    'font-weight:bold;margin-bottom:10px">DSMT · FREE WORKSHOP</div>',
 
     '<h1 style="font-size:23px;margin:0 0 18px;color:#ffffff">',
     CONFIG.workshopTagline, '</h1>',
@@ -442,7 +443,7 @@ function buildConfirmationEmail_(a) {
 
     '<div style="border-top:1px solid #22302a;margin-top:28px;padding-top:18px;',
     'color:#7d8b83;font-size:12px">',
-      CONFIG.organiser, ' · ', CONFIG.presenter, '<br>',
+      CONFIG.organiserKm, '<br>', CONFIG.organiser, ' · ', CONFIG.presenter, '<br>',
       '<a href="', CONFIG.telegramGroup, '" style="color:#4ade80">ក្រុម Telegram</a> · ',
       '<a href="', CONFIG.promptLibrary, '" style="color:#4ade80">Prompt Library</a>',
     '</div>',

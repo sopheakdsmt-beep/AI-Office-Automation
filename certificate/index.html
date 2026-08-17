@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Certificate Generator · AI Office Automation</title>
-<meta name="description" content="បង្កើតវិញ្ញាបនបត្រសម្រាប់អ្នកចូលរួមវគ្គ AI Office Automation។">
+<meta name="description" content="បង្កើតវិញ្ញាបនបត្រសម្រាប់អ្នកចូលរួមវគ្គ AI Office Automation · នាយកដ្ឋានពន្ធដារសហគ្រាសខ្នាតតូច និងមធ្យម។">
 <style>
 /* ============================================================
    Certificate generator — self-contained.
@@ -34,7 +34,7 @@
   --font-km:  "AIOA Khmer", "Noto Sans Khmer", "Kantumruy Pro",
               "Khmer UI", "Khmer Sangam MN", "Khmer MN",
               "Khmer OS Battambang", "Khmer OS", sans-serif;
-  --font-en:  "Georgia", "Times New Roman", serif;
+  --font-en:  "AIOA Khmer", "Georgia", "Times New Roman", serif;
   --font-ui:  var(--font-km), "Inter", system-ui, sans-serif;
 }
 
@@ -223,7 +223,7 @@ body {
   border-radius: 5mm;
   border: 1.5px solid var(--gold);
   display: grid; place-items: center;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "AIOA Khmer", "Inter", system-ui, sans-serif;
   font-weight: 800;
   font-size: 6.4pt;
   letter-spacing: 0.06em;
@@ -234,7 +234,7 @@ body {
 }
 
 .cert-kicker {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "AIOA Khmer", "Inter", system-ui, sans-serif;
   font-size: 8pt;
   font-weight: 700;
   letter-spacing: 0.42em;
@@ -325,7 +325,7 @@ body {
 }
 
 .meta-row .m-label {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "AIOA Khmer", "Inter", system-ui, sans-serif;
   font-size: 6.6pt;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -358,16 +358,25 @@ body {
   color: var(--ink);
 }
 
+.sig .sig-name-km {
+  font-family: var(--font-km);
+  font-size: 8.5pt;
+  color: var(--ink-2);
+  line-height: 1.4;
+  margin-top: 0.6mm;
+}
+
 .sig .sig-role {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "AIOA Khmer", "Inter", system-ui, sans-serif;
   font-size: 7.5pt;
   color: var(--ink-3);
-  letter-spacing: 0.06em;
+  /* No tracking: this label takes free text and may contain Khmer. */
+  letter-spacing: normal;
   margin-top: 0.8mm;
 }
 
 .sig .scribble {
-  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-family: "AIOA Khmer", "Segoe Script", "Brush Script MT", cursive;
   font-size: 17pt;
   color: var(--gold);
   height: 9mm;
@@ -381,7 +390,7 @@ body {
   position: absolute;
   bottom: 5mm;
   right: 8mm;
-  font-family: "Inter", ui-monospace, monospace;
+  font-family: "AIOA Khmer", "Inter", ui-monospace, monospace;
   font-size: 6.8pt;
   letter-spacing: 0.12em;
   color: var(--ink-3);
@@ -430,7 +439,7 @@ body {
 <body>
 
 <div class="panel no-print">
-  <p class="eyebrow">Certificate Generator · Skill Next</p>
+  <p class="eyebrow">Certificate Generator · DSMT</p>
   <h1>បង្កើតវិញ្ញាបនបត្រ</h1>
   <p class="lead">
     បំពេញព័ត៌មាន → ចុច «បង្កើត» → ចុច «បោះពុម្ព / រក្សាទុកជា PDF»។
@@ -469,7 +478,7 @@ body {
     </div>
     <div class="field">
       <label for="fId">លេខវិញ្ញាបនបត្រ</label>
-      <input id="fId" type="text" value="SN-AIOA-2026-0001">
+      <input id="fId" type="text" value="DSMT-AIOA-2026-0001">
     </div>
     <div class="field">
       <label for="fTheme">ពណ៌</label>
@@ -484,11 +493,11 @@ body {
     </div>
     <div class="field">
       <label for="fSignerRole">តួនាទី</label>
-      <input id="fSignerRole" type="text" value="Founder · Skill Next">
+      <input id="fSignerRole" type="text" value="អ្នកបណ្តុះបណ្តាល · Trainer">
     </div>
     <div class="field wide">
       <label for="fBatch">បញ្ជីឈ្មោះច្រើននាក់ — ១ បន្ទាត់ ១ នាក់ (ស្រេចចិត្ត)</label>
-      <textarea id="fBatch" placeholder="Sok Dara, សុខ តារា, SN-AIOA-2026-0001, 14/15 · 93%&#10;Chan Nita, ចាន់ នីតា, SN-AIOA-2026-0002, 15/15 · 100%&#10;&#10;ទម្រង់៖ ឈ្មោះឡាតាំង, ឈ្មោះខ្មែរ, លេខវិញ្ញាបនបត្រ, ពិន្ទុ&#10;បំពេញតែឈ្មោះឡាតាំងក៏បានដែរ — លេខនឹងបង្កើតដោយស្វ័យប្រវត្តិ។"></textarea>
+      <textarea id="fBatch" placeholder="Sok Dara, សុខ តារា, DSMT-AIOA-2026-0001, 14/15 · 93%&#10;Chan Nita, ចាន់ នីតា, DSMT-AIOA-2026-0002, 15/15 · 100%&#10;&#10;ទម្រង់៖ ឈ្មោះឡាតាំង, ឈ្មោះខ្មែរ, លេខវិញ្ញាបនបត្រ, ពិន្ទុ&#10;បំពេញតែឈ្មោះឡាតាំងក៏បានដែរ — លេខនឹងបង្កើតដោយស្វ័យប្រវត្តិ។"></textarea>
     </div>
   </div>
 
@@ -556,8 +565,8 @@ body {
         '<span class="corner bl"></span><span class="corner br"></span>' +
       '</div>' +
       '<div class="content">' +
-        '<div class="crest">SKILL<br>NEXT</div>' +
-        '<div class="cert-kicker">Skill Next · Cambodia</div>' +
+        '<div class="crest">DSMT</div>' +
+        '<div class="cert-kicker">Department of Small and Medium Taxation · Cambodia</div>' +
         '<h1 class="cert-title">' + esc(t.en) + '</h1>' +
         '<div class="cert-title-km">' + esc(t.km) + '</div>' +
 
@@ -596,7 +605,8 @@ body {
           '<div class="sig">' +
             '<div class="scribble">&nbsp;</div>' +
             '<div class="line">' +
-              '<div class="sig-name">Skill Next</div>' +
+              '<div class="sig-name">Department of Small and Medium Taxation</div>' +
+            '<div class="sig-name-km">នាយកដ្ឋានពន្ធដារសហគ្រាសខ្នាតតូច និងមធ្យម</div>' +
               '<div class="sig-role">Training Provider</div>' +
             '</div>' +
           '</div>' +
@@ -639,7 +649,7 @@ body {
       return {
         name:       parts[0] || base.name,
         nameKm:     parts[1] || '',
-        id:         parts[2] || ('SN-AIOA-' + year + '-' + pad(i + 1)),
+        id:         parts[2] || ('DSMT-AIOA-' + year + '-' + pad(i + 1)),
         score:      parts[3] !== undefined ? parts[3] : base.score,
         type:       base.type,
         date:       base.date,

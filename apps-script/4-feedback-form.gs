@@ -18,7 +18,7 @@
 
 var FB_CONFIG = {
   workshopTitle: 'AI Office Automation',
-  organiser:     'Skill Next',
+  organiser:     'Department of Small and Medium Taxation',
   courseLink:    'https://example.com/full-course',
   quizLink:      'https://example.com/quiz'
 };

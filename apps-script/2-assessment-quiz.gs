@@ -23,7 +23,7 @@ var QUIZ_CONFIG = {
   passPercent:  70,
   pointsPerQ:   1,
   replyTo:      'hello@example.com',
-  organiser:    'Skill Next',
+  organiser:    'Department of Small and Medium Taxation',
   certContact:  'hello@example.com',
   // Send an automatic result email after each submission
   emailResults: true
@@ -446,7 +446,7 @@ function buildResultEmail_(name, score, total, percent, passed) {
     'padding:34px;border-radius:14px;line-height:1.7">',
 
     '<div style="color:#4ade80;font-size:12px;letter-spacing:2px;',
-    'font-weight:bold;margin-bottom:10px">SKILL NEXT · ASSESSMENT RESULT</div>',
+    'font-weight:bold;margin-bottom:10px">DSMT · ASSESSMENT RESULT</div>',
 
     '<h1 style="font-size:22px;margin:0 0 20px;color:#ffffff">', heading, '</h1>',
 
