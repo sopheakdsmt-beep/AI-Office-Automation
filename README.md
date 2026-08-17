@@ -147,7 +147,8 @@
 ### ពុម្ពអក្សរខ្មែរ
 
 ឯកសារនេះភ្ជាប់មកជាមួយពុម្ពអក្សរ **Noto Sans Khmer**
-(`assets/fonts/noto-sans-khmer.woff2` · SIL Open Font License)។
+(`assets/fonts/noto-sans-khmer.woff2` · SIL Open Font License 1.1 —
+មើល [`assets/fonts/`](assets/fonts/README.md))។
 
 មូលហេតុ៖ ម៉ាស៊ីនជាច្រើនគ្មានពុម្ពអក្សរខ្មែរទេ ហើយពុម្ពជំនួសស្វ័យប្រវត្តិ
 បំបែកការតម្រៀបជើងអក្សរ និងស្រៈ។ ដោយភ្ជាប់វាមកជាមួយ អក្សរខ្មែរបង្ហាញ
