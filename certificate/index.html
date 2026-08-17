@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificate Generator · AI Office Automation</title>
+<meta name="description" content="បង្កើតវិញ្ញាបនបត្រសម្រាប់អ្នកចូលរួមវគ្គ AI Office Automation។">
+<style>
+/* ============================================================
+   Certificate generator — self-contained.
+   Screen: control panel + live preview.
+   Print:  A4 landscape, one certificate per page.
+   ============================================================ */
+
+:root {
+  --ink:      #0d1712;
+  --ink-2:    #3d4a43;
+  --ink-3:    #6b7873;
+  --gold:     #0f7a44;
+  --accent:   #16a34a;
+  --paper:    #fdfdfb;
+  --edge:     #d9e2dc;
+  --font-km:  "Kantumruy Pro", "Noto Sans Khmer", "Khmer OS Battambang", "Khmer OS", sans-serif;
+  --font-en:  "Georgia", "Times New Roman", serif;
+  --font-ui:  var(--font-km), "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #0a0e0c;
+  color: #e9f0eb;
+  font-family: var(--font-ui);
+  line-height: 1.6;
+}
+
+/* ---------------- Control panel ---------------- */
+
+.panel {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px 22px 10px;
+}
+
+.panel h1 {
+  font-size: 1.6rem;
+  margin: 0 0 6px;
+}
+
+.panel .lead {
+  color: #93a19a;
+  margin: 0 0 26px;
+  max-width: 70ch;
+}
+
+.eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #4ade80; margin-bottom: 14px;
+}
+.eyebrow::before {
+  content: ""; width: 38px; height: 2px; background: #4ade80; border-radius: 2px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+  background: #111814;
+  border: 1px solid #1f2a24;
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #7d8b83;
+  margin-bottom: 7px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 13px;
+  border-radius: 9px;
+  background: #1a231d;
+  border: 1px solid #26332c;
+  color: #e9f0eb;
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: #4ade80; }
+
+.field textarea { resize: vertical; min-height: 86px; }
+.field.wide { grid-column: 1 / -1; }
+
+.actions {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin: 18px 0 8px;
+}
+
+.btn {
+  padding: 11px 22px;
+  border-radius: 9px;
+  border: 1px solid #26332c;
+  background: #1a231d;
+  color: #e9f0eb;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.btn:hover { border-color: #4ade80; }
+.btn-primary { background: #4ade80; border-color: #4ade80; color: #04140a; }
+.btn-primary:hover { background: #6ee79b; }
+
+.hint {
+  font-size: 0.82rem;
+  color: #6b7873;
+  margin: 6px 0 0;
+}
+
+.stage {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 26px 22px 70px;
+}
+
+.stage-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #7d8b83; margin-bottom: 14px;
+}
+
+/* ---------------- Certificate ---------------- */
+
+.sheet {
+  width: 297mm;
+  height: 210mm;
+  max-width: 100%;
+  margin: 0 auto 26px;
+  background: var(--paper);
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+  /* Scale to fit narrow screens without breaking print size */
+  transform-origin: top center;
+}
+
+.sheet.theme-dark {
+  --ink:   #f2f7f3;
+  --ink-2: #b7c5bd;
+  --ink-3: #7f8d86;
+  --paper: #0a0f0c;
+  --edge:  #1e2b24;
+  --gold:  #4ade80;
+}
+
+/* Decorative frame */
+.frame {
+  position: absolute;
+  inset: 12mm;
+  border: 1px solid var(--edge);
+}
+
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 3mm;
+  border: 3px solid var(--gold);
+  opacity: 0.14;
+}
+
+/* Corner accents */
+.corner {
+  position: absolute;
+  width: 22mm; height: 22mm;
+  border: 0 solid var(--gold);
+}
+.corner.tl { top: -1px; left: -1px;   border-top-width: 3px; border-left-width: 3px; }
+.corner.tr { top: -1px; right: -1px;  border-top-width: 3px; border-right-width: 3px; }
+.corner.bl { bottom: -1px; left: -1px;  border-bottom-width: 3px; border-left-width: 3px; }
+.corner.br { bottom: -1px; right: -1px; border-bottom-width: 3px; border-right-width: 3px; }
+
+.content {
+  position: absolute;
+  inset: 12mm;
+  padding: 16mm 20mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.crest {
+  width: 17mm; height: 17mm;
+  border-radius: 5mm;
+  border: 1.5px solid var(--gold);
+  display: grid; place-items: center;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 6.4pt;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  color: var(--gold);
+  margin-bottom: 5mm;
+  flex: none;
+}
+
+.cert-kicker {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 3mm;
+}
+
+.cert-title {
+  font-family: var(--font-en);
+  font-size: 27pt;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0 0 2mm;
+  color: var(--ink);
+}
+
+.cert-title-km {
+  font-size: 13pt;
+  color: var(--ink-2);
+  margin: 0 0 7mm;
+}
+
+.presented {
+  font-size: 10pt;
+  color: var(--ink-3);
+  margin-bottom: 4mm;
+  letter-spacing: 0.02em;
+}
+
+.recipient {
+  font-family: var(--font-en);
+  font-size: 30pt;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 2mm;
+  padding: 0 6mm;
+  word-break: break-word;
+}
+
+.recipient-km {
+  font-size: 12pt;
+  color: var(--ink-2);
+  margin: 0 0 4mm;
+  min-height: 1em;
+}
+
+.rule {
+  width: 78mm;
+  height: 1px;
+  background: var(--edge);
+  margin: 0 0 6mm;
+  position: relative;
+}
+.rule::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: -2px;
+  transform: translateX(-50%);
+  width: 16mm; height: 5px;
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+.citation {
+  font-size: 10.5pt;
+  color: var(--ink-2);
+  max-width: 190mm;
+  line-height: 1.75;
+  margin: 0 0 3mm;
+}
+
+.course-name {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.meta-row {
+  display: flex;
+  gap: 12mm;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 6mm;
+  font-size: 8.5pt;
+  color: var(--ink-3);
+}
+
+.meta-row .m-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 6.6pt;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5mm;
+}
+
+.meta-row .m-value { color: var(--ink-2); font-size: 9.5pt; }
+
+.signatures {
+  display: flex;
+  justify-content: center;
+  gap: 34mm;
+  width: 100%;
+  margin-top: 8mm;
+  flex-wrap: wrap;
+}
+
+.sig { min-width: 58mm; }
+
+.sig .line {
+  border-top: 1px solid var(--edge);
+  padding-top: 2.5mm;
+}
+
+.sig .sig-name {
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--ink);
+}
+
+.sig .sig-role {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 7.5pt;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  margin-top: 0.8mm;
+}
+
+.sig .scribble {
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: 17pt;
+  color: var(--gold);
+  height: 9mm;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1mm;
+}
+
+.cert-id {
+  position: absolute;
+  bottom: 5mm;
+  right: 8mm;
+  font-family: "Inter", ui-monospace, monospace;
+  font-size: 6.8pt;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+
+.verify-note {
+  position: absolute;
+  bottom: 5mm;
+  left: 8mm;
+  font-size: 6.8pt;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+
+/* Watermark */
+.watermark {
+  position: absolute;
+  right: -18mm;
+  bottom: -22mm;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 96pt;
+  font-weight: 800;
+  color: var(--gold);
+  opacity: 0.045;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ---------------- Print ---------------- */
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  body { background: #fff; }
+  .panel, .stage-label, .no-print { display: none !important; }
+  .stage { padding: 0; max-width: none; }
+  .sheet {
+    box-shadow: none;
+    margin: 0;
+    page-break-after: always;
+    break-after: page;
+    transform: none !important;
+    width: 297mm;
+    height: 210mm;
+  }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+}
+
+@media (max-width: 1140px) {
+  .sheet { transform: scale(0.62); margin-bottom: -70mm; }
+}
+@media (max-width: 700px) {
+  .sheet { transform: scale(0.36); margin-bottom: -128mm; }
+}
+</style>
+</head>
+<body>
+
+<div class="panel no-print">
+  <p class="eyebrow">Certificate Generator · Skill Next</p>
+  <h1>បង្កើតវិញ្ញាបនបត្រ</h1>
+  <p class="lead">
+    បំពេញព័ត៌មាន → ចុច «បង្កើត» → ចុច «បោះពុម្ព / រក្សាទុកជា PDF»។
+    សម្រាប់ច្រើននាក់ក្នុងពេលតែមួយ សូមបិទភ្ជាប់បញ្ជីឈ្មោះក្នុងប្រអប់ខាងក្រោម —
+    ប្រព័ន្ធនឹងបង្កើតទំព័រមួយសម្រាប់ម្នាក់ៗ។
+  </p>
+
+  <div class="fields">
+    <div class="field">
+      <label for="fName">ឈ្មោះ (អក្សរឡាតាំង)</label>
+      <input id="fName" type="text" value="Sok Dara" placeholder="Sok Dara">
+    </div>
+    <div class="field">
+      <label for="fNameKm">ឈ្មោះ (អក្សរខ្មែរ) — ស្រេចចិត្ត</label>
+      <input id="fNameKm" type="text" value="សុខ តារា" placeholder="សុខ តារា">
+    </div>
+    <div class="field">
+      <label for="fType">ប្រភេទវិញ្ញាបនបត្រ</label>
+      <select id="fType">
+        <option value="completion">បញ្ចប់វគ្គសិក្សា · Completion</option>
+        <option value="attendance">ចូលរួមសិក្ខាសាលា · Attendance</option>
+        <option value="excellence">ស័ក្តិសមឧត្តមភាព · Excellence</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="fDate">កាលបរិច្ឆេទ</label>
+      <input id="fDate" type="text" value="14 August 2026" placeholder="14 August 2026">
+    </div>
+    <div class="field">
+      <label for="fHours">រយៈពេល</label>
+      <input id="fHours" type="text" value="60 minutes" placeholder="18 hours">
+    </div>
+    <div class="field">
+      <label for="fScore">ពិន្ទុតេស្ត — ស្រេចចិត្ត</label>
+      <input id="fScore" type="text" value="14/15 · 93%" placeholder="14/15 · 93%">
+    </div>
+    <div class="field">
+      <label for="fId">លេខវិញ្ញាបនបត្រ</label>
+      <input id="fId" type="text" value="SN-AIOA-2026-0001">
+    </div>
+    <div class="field">
+      <label for="fTheme">ពណ៌</label>
+      <select id="fTheme">
+        <option value="light">ស (សម្រាប់បោះពុម្ព)</option>
+        <option value="dark">ខ្មៅ (សម្រាប់ PDF ឌីជីថល)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="fSigner">អ្នកចុះហត្ថលេខា</label>
+      <input id="fSigner" type="text" value="Eath Suo">
+    </div>
+    <div class="field">
+      <label for="fSignerRole">តួនាទី</label>
+      <input id="fSignerRole" type="text" value="Founder · Skill Next">
+    </div>
+    <div class="field wide">
+      <label for="fBatch">បញ្ជីឈ្មោះច្រើននាក់ — ១ បន្ទាត់ ១ នាក់ (ស្រេចចិត្ត)</label>
+      <textarea id="fBatch" placeholder="Sok Dara, សុខ តារា, SN-AIOA-2026-0001, 14/15 · 93%&#10;Chan Nita, ចាន់ នីតា, SN-AIOA-2026-0002, 15/15 · 100%&#10;&#10;ទម្រង់៖ ឈ្មោះឡាតាំង, ឈ្មោះខ្មែរ, លេខវិញ្ញាបនបត្រ, ពិន្ទុ&#10;បំពេញតែឈ្មោះឡាតាំងក៏បានដែរ — លេខនឹងបង្កើតដោយស្វ័យប្រវត្តិ។"></textarea>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="btnBuild">បង្កើតវិញ្ញាបនបត្រ</button>
+    <button class="btn" id="btnPrint">🖨 បោះពុម្ព / រក្សាទុកជា PDF</button>
+    <button class="btn" id="btnClear">សម្អាតបញ្ជី</button>
+  </div>
+  <p class="hint">
+    គន្លឹះបោះពុម្ព៖ ក្នុងប្រអប់ Print សូមជ្រើស <strong>A4 · Landscape</strong>,
+    Margins = <strong>None</strong>, និងបើក <strong>Background graphics</strong>។
+  </p>
+</div>
+
+<div class="stage">
+  <p class="stage-label no-print">មើលជាមុន · Preview</p>
+  <div id="output"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var TYPES = {
+    completion: {
+      en: 'Certificate of Completion',
+      km: 'វិញ្ញាបនបត្របញ្ចប់វគ្គសិក្សា',
+      citation: 'បានបញ្ចប់ដោយជោគជ័យនូវវគ្គបណ្តុះបណ្តាល',
+      citationEn: 'has successfully completed the training programme'
+    },
+    attendance: {
+      en: 'Certificate of Attendance',
+      km: 'វិញ្ញាបនបត្រចូលរួម',
+      citation: 'បានចូលរួមពេញលេញក្នុងសិក្ខាសាលា',
+      citationEn: 'attended the full workshop'
+    },
+    excellence: {
+      en: 'Certificate of Excellence',
+      km: 'វិញ្ញាបនបត្រស័ក្តិសមឧត្តមភាព',
+      citation: 'បានបញ្ចប់ដោយលទ្ធផលឆ្នើមនូវវគ្គបណ្តុះបណ្តាល',
+      citationEn: 'completed with distinction the training programme'
+    }
+  };
+
+  var COURSE = 'AI for Office Automation';
+  var COURSE_KM = 'ការងារ ៨ ម៉ោង — សល់ត្រឹម ២ ម៉ោង';
+
+  function el(id) { return document.getElementById(id); }
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function pad(n) { return String(n).padStart(4, '0'); }
+
+  function certHtml(data) {
+    var t = TYPES[data.type] || TYPES.completion;
+
+    return '' +
+    '<div class="sheet theme-' + esc(data.theme) + '">' +
+      '<div class="frame">' +
+        '<span class="corner tl"></span><span class="corner tr"></span>' +
+        '<span class="corner bl"></span><span class="corner br"></span>' +
+      '</div>' +
+      '<div class="watermark">AI</div>' +
+      '<div class="content">' +
+        '<div class="crest">SKILL<br>NEXT</div>' +
+        '<div class="cert-kicker">Skill Next · Cambodia</div>' +
+        '<h1 class="cert-title">' + esc(t.en) + '</h1>' +
+        '<div class="cert-title-km">' + esc(t.km) + '</div>' +
+
+        '<div class="presented">សូមប្រកាសជូន · This is presented to</div>' +
+        '<div class="recipient">' + esc(data.name || '—') + '</div>' +
+        '<div class="recipient-km">' + esc(data.nameKm || '') + '</div>' +
+        '<div class="rule"></div>' +
+
+        '<p class="citation">' +
+          esc(t.citation) + ' <span class="course-name">' + esc(COURSE) + '</span> — ' +
+          esc(COURSE_KM) + '<br>' +
+          '<span style="font-size:9pt">' + esc(t.citationEn) +
+          ', covering prompting, workflow design, and building a first ' +
+          'human-approved automation.</span>' +
+        '</p>' +
+
+        '<div class="meta-row">' +
+          '<div><div class="m-label">Date</div>' +
+            '<div class="m-value">' + esc(data.date) + '</div></div>' +
+          '<div><div class="m-label">Duration</div>' +
+            '<div class="m-value">' + esc(data.hours) + '</div></div>' +
+          (data.score
+            ? '<div><div class="m-label">Assessment</div>' +
+              '<div class="m-value">' + esc(data.score) + '</div></div>'
+            : '') +
+        '</div>' +
+
+        '<div class="signatures">' +
+          '<div class="sig">' +
+            '<div class="scribble">' + esc(data.signer) + '</div>' +
+            '<div class="line">' +
+              '<div class="sig-name">' + esc(data.signer) + '</div>' +
+              '<div class="sig-role">' + esc(data.signerRole) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="sig">' +
+            '<div class="scribble">&nbsp;</div>' +
+            '<div class="line">' +
+              '<div class="sig-name">Skill Next</div>' +
+              '<div class="sig-role">Training Provider</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="verify-note">ផ្ទៀងផ្ទាត់តាមលេខវិញ្ញាបនបត្រ · Verify with the ID shown</div>' +
+      '<div class="cert-id">' + esc(data.id) + '</div>' +
+    '</div>';
+  }
+
+  function readForm() {
+    return {
+      name:       el('fName').value.trim(),
+      nameKm:     el('fNameKm').value.trim(),
+      type:       el('fType').value,
+      date:       el('fDate').value.trim(),
+      hours:      el('fHours').value.trim(),
+      score:      el('fScore').value.trim(),
+      id:         el('fId').value.trim(),
+      theme:      el('fTheme').value,
+      signer:     el('fSigner').value.trim(),
+      signerRole: el('fSignerRole').value.trim()
+    };
+  }
+
+  /**
+   * Batch lines look like:
+   *   Latin name, Khmer name, Cert ID, Score
+   * Only the first field is required; the rest fall back to the form.
+   */
+  function parseBatch(text, base) {
+    var lines = text.split('\n')
+      .map(function (l) { return l.trim(); })
+      .filter(function (l) { return l.length > 0; });
+
+    var year = (base.date.match(/\b(20\d{2})\b/) || [])[1] || '2026';
+
+    return lines.map(function (line, i) {
+      var parts = line.split(',').map(function (p) { return p.trim(); });
+      return {
+        name:       parts[0] || base.name,
+        nameKm:     parts[1] || '',
+        id:         parts[2] || ('SN-AIOA-' + year + '-' + pad(i + 1)),
+        score:      parts[3] !== undefined ? parts[3] : base.score,
+        type:       base.type,
+        date:       base.date,
+        hours:      base.hours,
+        theme:      base.theme,
+        signer:     base.signer,
+        signerRole: base.signerRole
+      };
+    });
+  }
+
+  function build() {
+    var base = readForm();
+    var batchText = el('fBatch').value.trim();
+    var rows = batchText ? parseBatch(batchText, base) : [base];
+
+    el('output').innerHTML = rows.map(certHtml).join('');
+  }
+
+  el('btnBuild').addEventListener('click', build);
+  el('btnPrint').addEventListener('click', function () { window.print(); });
+  el('btnClear').addEventListener('click', function () {
+    el('fBatch').value = '';
+    build();
+  });
+
+  // Live preview while typing single-certificate fields
+  ['fName', 'fNameKm', 'fType', 'fDate', 'fHours', 'fScore', 'fId',
+   'fTheme', 'fSigner', 'fSignerRole'].forEach(function (id) {
+    el(id).addEventListener('input', function () {
+      if (!el('fBatch').value.trim()) build();
+    });
+    el(id).addEventListener('change', function () {
+      if (!el('fBatch').value.trim()) build();
+    });
+  });
+
+  build();
+})();
+</script>
+</body>
+</html>
