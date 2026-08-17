@@ -28,7 +28,7 @@ var CONFIG = {
   workshopTime:   '១៩:០០ – ២០:០០ (ម៉ោងកម្ពុជា)',
   workshopPlace:  'Online · Zoom',
   organiser:      'Department of Small and Medium Taxation',
-  organiserKm:    'នាយកដ្ឋានពន្ធដារសហគ្រាសខ្នាតតូច និងមធ្យម',
+  organiserKm:    'នាយកដ្ឋានគ្រប់គ្រងអ្នកជាប់ពន្ធតូចនិងមធ្យម',
   presenter:      'អ៊ាត់ សួរ (Eath Suo)',
 
   // ── តំណភ្ជាប់ · Links (fill these in before running) ──

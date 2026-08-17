@@ -23,7 +23,7 @@ var CERT_CONFIG = {
   courseName:     'AI for Office Automation',
   courseNameKm:   'ការងារ ៨ ម៉ោង — សល់ត្រឹម ២ ម៉ោង',
   organiser:      'Department of Small and Medium Taxation',
-  organiserKm:    'នាយកដ្ឋានពន្ធដារសហគ្រាសខ្នាតតូច និងមធ្យម',
+  organiserKm:    'នាយកដ្ឋានគ្រប់គ្រងអ្នកជាប់ពន្ធតូចនិងមធ្យម',
   signer:         'Eath Suo',
   signerRole:     'អ្នកបណ្តុះបណ្តាល · Trainer',
   duration:       '60 minutes',
