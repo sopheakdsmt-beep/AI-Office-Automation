@@ -161,8 +161,11 @@ Department of Small and Medium Taxation
 
 ## ការដាក់ឡើងអ៊ីនធឺណិត
 
-បើក **Settings → Pages** → Branch `main` → Folder `/ (root)`។
+បើក **Settings → Pages** → Branch **លំនាំដើម** → Folder `/ (root)`។
 តំណនឹងក្លាយជា `https://<username>.github.io/AI-Office-Automation/`។
+
+> ឃ្លាំងឯកជនត្រូវការគម្រោងបង់ប្រាក់សម្រាប់ Pages —
+> គម្រោងឥតគិតថ្លៃត្រូវប្តូរឃ្លាំងទៅជា Public ជាមុនសិន។
 
 សូមមើលព័ត៌មានលម្អិតក្នុង [`docs/04-setup-guide.md`](docs/04-setup-guide.md) ផ្នែកទី ៥។
 

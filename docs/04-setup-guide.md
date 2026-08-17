@@ -175,9 +175,15 @@
 
 **GitHub Pages** — ឥតគិតថ្លៃ និងលឿនបំផុត៖
 
+> ⚠️ **ឃ្លាំងឯកជន (Private):** GitHub Pages ត្រូវការគម្រោងបង់ប្រាក់។
+> បើប្រើគម្រោងឥតគិតថ្លៃ សូមប្តូរឃ្លាំងទៅជា **Public** ជាមុនសិន៖
+> Settings → Danger Zone → Change visibility។
+
 1. ចូល **Settings → Pages** ក្នុងឃ្លាំង GitHub នេះ
 2. **Source:** Deploy from a branch
-3. **Branch:** `main` · **Folder:** `/ (root)` → **Save**
+3. **Branch:** ជ្រើស **branch លំនាំដើម** របស់ឃ្លាំង
+   (មិនមែនតែងតែឈ្មោះ `main` ទេ — ពិនិត្យក្នុង Settings → General → Default branch)
+   · **Folder:** `/ (root)` → **Save**
 4. ក្រោយ ១–២ នាទី តំណនឹងលេចឡើង៖
    `https://<username>.github.io/AI-Office-Automation/`
 
