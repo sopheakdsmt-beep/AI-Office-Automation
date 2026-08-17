@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workflow Blueprints · AI Office Automation</title>
+<meta name="description" content="ដ្យាក្រាមពេញលេញនៃប្រព័ន្ធស្វ័យប្រវត្តិកម្ម ៣ ដែលបង្ហាញក្នុងវគ្គ — រួមទាំងជំហានសង់ និង Prompt។">
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+body { overflow-y: auto; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px) 90px; }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap; padding-top: 26px;
+}
+.brand {
+  display: flex; align-items: center; gap: 11px;
+  font-family: var(--font-latin); font-weight: 800;
+  font-size: 0.7rem; letter-spacing: 0.16em; color: var(--muted);
+}
+.brand .dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  display: grid; place-items: center; color: var(--accent); font-size: 0.85rem;
+}
+
+.masthead {
+  padding: 30px 0 26px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 34px;
+}
+.masthead h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 10px; }
+.masthead .sub { color: var(--text-2); max-width: 68ch; margin: 0; }
+
+/* ---------- Blueprint ---------- */
+
+.bp {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: clamp(20px, 3vw, 32px);
+  margin-bottom: 28px;
+}
+
+.bp-head {
+  display: flex; align-items: baseline; gap: 14px;
+  flex-wrap: wrap; margin-bottom: 6px;
+}
+.bp-no {
+  font-family: var(--font-latin); font-weight: 800;
+  font-size: 0.72rem; letter-spacing: 0.18em;
+  color: var(--accent); text-transform: uppercase;
+}
+.bp h2 { font-size: clamp(1.2rem, 2.6vw, 1.6rem); margin: 0; }
+.bp .who { color: var(--muted); font-size: 0.92rem; margin: 6px 0 22px; }
+
+/* Vertical flow */
+.vflow { display: grid; gap: 0; margin-bottom: 24px; }
+
+.step {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 18px;
+  position: relative;
+  padding-bottom: 20px;
+}
+.step:last-child { padding-bottom: 0; }
+
+.step::before {
+  content: "";
+  position: absolute;
+  left: 20px; top: 40px; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.step:last-child::before { display: none; }
+
+.step-dot {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: grid; place-items: center;
+  font-size: 1.05rem;
+  z-index: 1;
+}
+
+.step.is-ai    .step-dot { border-color: rgba(74,222,128,0.45);  background: rgba(74,222,128,0.09); }
+.step.is-human .step-dot { border-color: rgba(250,204,21,0.45);  background: rgba(250,204,21,0.09); }
+
+.step-body { padding-top: 3px; min-width: 0; }
+
+.step-kind {
+  font-family: var(--font-latin);
+  font-size: 0.64rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 5px;
+}
+.step.is-ai .step-kind    { color: var(--accent); }
+.step.is-human .step-kind { color: #facc15; }
+
+.step-title { font-weight: 700; font-size: 1rem; margin-bottom: 5px; }
+.step-desc  { font-size: 0.9rem; color: var(--text-2); }
+
+.step-tool {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  color: var(--muted);
+}
+
+/* Detail blocks */
+.bp-detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.dbox {
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  padding: 18px;
+}
+.dbox h3 {
+  font-family: var(--font-latin);
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 11px;
+}
+.dbox ul { margin: 0; padding-left: 18px; font-size: 0.88rem; color: var(--text-2); }
+.dbox li { margin-bottom: 7px; }
+.dbox li:last-child { margin-bottom: 0; }
+
+.dbox pre {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-2);
+}
+
+.impact {
+  display: flex; gap: 22px; flex-wrap: wrap;
+  margin-top: 20px; padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.impact div { font-size: 0.86rem; color: var(--muted); }
+.impact strong {
+  display: block;
+  font-family: var(--font-latin);
+  font-size: 1.35rem; color: var(--accent); line-height: 1.2;
+}
+
+.legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  margin-bottom: 30px; font-size: 0.85rem; color: var(--muted);
+}
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.chip { width: 14px; height: 14px; border-radius: 5px; border: 1px solid var(--border); }
+.chip.ai    { background: rgba(74,222,128,0.3);  border-color: rgba(74,222,128,0.5); }
+.chip.human { background: rgba(250,204,21,0.3);  border-color: rgba(250,204,21,0.5); }
+.chip.sys   { background: var(--surface-3); }
+
+@media print {
+  body { background: #fff; color: #111; }
+  .no-print { display: none !important; }
+  .bp { break-inside: avoid; border-color: #ccc; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topbar no-print">
+    <div class="brand"><span class="dot">◧</span> SKILL NEXT · AI OFFICE AUTOMATION</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="pill" href="../slides/index.html">ស្លាយ</a>
+      <a class="pill" href="../prompt-library/index.html">Prompt Library</a>
+      <a class="pill" href="task-audit.html">Task Audit</a>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <p class="eyebrow">Tool 02 · Workflow Blueprints</p>
+    <h1>ដ្យាក្រាមប្រព័ន្ធ <span class="accent">៣</span> ដែលបង្ហាញក្នុងវគ្គ</h1>
+    <p class="sub">
+      ប្រព័ន្ធនីមួយៗមានជំហានពេញលេញ · ឧបករណ៍ដែលប្រើ · Prompt ដែលដាក់ចូល ·
+      ករណីសាកល្បង · និងអ្វីដែលត្រូវធ្វើពេលមានកំហុស។
+      ចាប់ផ្តើមពី Blueprint ០១ បើនេះជាប្រព័ន្ធដំបូងរបស់អ្នក។
+    </p>
+  </header>
+
+  <div class="legend">
+    <span><i class="chip sys"></i> ជំហានប្រព័ន្ធ</span>
+    <span><i class="chip ai"></i> ជំហាន AI</span>
+    <span><i class="chip human"></i> ជំហានមនុស្សអនុម័ត</span>
+  </div>
+
+  <!-- ══════════════ BLUEPRINT 01 ══════════════ -->
+  <section class="bp">
+    <div class="bp-head">
+      <span class="bp-no">Blueprint 01 · Data entry</span>
+    </div>
+    <h2>Invoice → Google Sheet ស្វ័យប្រវត្តិ</h2>
+    <p class="who">
+      សម្រាប់៖ គណនេយ្យ · រដ្ឋបាល · អ្នកគ្រប់គ្រងលទ្ធកម្ម ·
+      កម្រិតលំបាក៖ ★★☆ · ពេលសង់ប្រហែល ៩០ នាទី
+    </p>
+
+    <div class="vflow">
+      <div class="step">
+        <div class="step-dot">📥</div>
+        <div class="step-body">
+          <div class="step-kind">Trigger</div>
+          <div class="step-title">Email ដែលមានឯកសារភ្ជាប់ចូលមកដល់</div>
+          <div class="step-desc">
+            ត្រងតែ Email ដែលមានស្លាក «invoice» ឬមកពីអ្នកផ្គត់ផ្គង់ដែលស្គាល់
+            — កុំឲ្យវាដំណើរការលើគ្រប់ Email។
+          </div>
+          <span class="step-tool">Gmail trigger · label:invoice has:attachment</span>
+        </div>
+      </div>
+
+      <div class="step is-ai">
+        <div class="step-dot">🤖</div>
+        <div class="step-body">
+          <div class="step-kind">AI · Extract</div>
+          <div class="step-title">អាន PDF រួចដកទិន្នន័យចេញជា JSON</div>
+          <div class="step-desc">
+            ដកលេខវិក្កយបត្រ · កាលបរិច្ឆេទ · អ្នកផ្គត់ផ្គង់ · បញ្ជីទំនិញ · សរុប។
+            បង្ខំឲ្យចេញជា JSON ជានិច្ច ហើយអនុញ្ញាតឲ្យដាក់ <code>null</code>។
+          </div>
+          <span class="step-tool">Prompt: dt-03 · «ដកទិន្នន័យពី PDF ទៅជា JSON»</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">🔍</div>
+        <div class="step-body">
+          <div class="step-kind">Validate</div>
+          <div class="step-title">ត្រួតពិនិត្យដោយច្បាប់ មិនមែនដោយ AI</div>
+          <div class="step-desc">
+            សរុបបន្ទាត់ = សរុបធំ? លេខវិក្កយបត្រស្ទួនក្នុង Sheet ទេ?
+            កាលបរិច្ឆេទសមហេតុផលទេ? ចំណុចនេះជាកូដសាមញ្ញ — ទុកចិត្តបានជាង AI។
+          </div>
+          <span class="step-tool">IF node · ឬ Apps Script</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">📊</div>
+        <div class="step-body">
+          <div class="step-kind">Action</div>
+          <div class="step-title">បន្ថែមជួរថ្មីក្នុង Google Sheet</div>
+          <div class="step-desc">
+            ដាក់តំណទៅ Email ដើម និង PDF ក្នុងជួរឈរចុងក្រោយ
+            ដើម្បីឲ្យផ្ទៀងផ្ទាត់វិញបានលឿន។
+          </div>
+          <span class="step-tool">Google Sheets · Append row</span>
+        </div>
+      </div>
+
+      <div class="step is-human">
+        <div class="step-dot">👤</div>
+        <div class="step-body">
+          <div class="step-kind">Human check</div>
+          <div class="step-title">ករណីមិនប្រាកដ → ផ្ញើទៅ Telegram</div>
+          <div class="step-desc">
+            បើ <code>confidence != "high"</code> ឬការត្រួតពិនិត្យបរាជ័យ —
+            កុំសរសេរចូល Sheet។ ផ្ញើទៅមនុស្សជាមួយតំណ PDF។
+          </div>
+          <span class="step-tool">Telegram · sendMessage</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bp-detail">
+      <div class="dbox">
+        <h3>ជួរឈរក្នុង Sheet</h3>
+        <pre>ថ្ងៃទទួល | លេខវិក្កយបត្រ | អ្នកផ្គត់ផ្គង់ |
+កាលបរិច្ឆេទ | រូបិយប័ណ្ណ | សរុប |
+ស្ថានភាព | ទំនុកចិត្ត | តំណ PDF</pre>
+      </div>
+      <div class="dbox">
+        <h3>ករណីសាកល្បង ៣</h3>
+        <ul>
+          <li><strong>ធម្មតា៖</strong> វិក្កយបត្រច្បាស់ ១ ទំព័រ</li>
+          <li><strong>ចម្លែក៖</strong> ២ ទំព័រ · មានបញ្ចុះតម្លៃ · រូបិយប័ណ្ណ KHR</li>
+          <li><strong>ខូច៖</strong> រូបថតស្កេនស្រអាប់ ឬ PDF ទទេ</li>
+        </ul>
+      </div>
+      <div class="dbox">
+        <h3>ពេលមានកំហុស</h3>
+        <ul>
+          <li>កត់ជួរក្នុងសន្លឹក «កំណត់ហេតុ» ជានិច្ច</li>
+          <li>ផ្ញើសារទៅមនុស្ស — កុំបរាជ័យស្ងាត់ៗ</li>
+          <li>កុំសាកល្បងឡើងវិញលើសពី ២ ដង</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="impact">
+      <div><strong>15 នាទី</strong> មុន · ក្នុងមួយវិក្កយបត្រ</div>
+      <div><strong>20 វិនាទី</strong> ក្រោយ · ដោយស្វ័យប្រវត្តិ</div>
+      <div><strong>100%</strong> ករណីមិនប្រាកដ ត្រូវមនុស្សពិនិត្យ</div>
+    </div>
+  </section>
+
+  <!-- ══════════════ BLUEPRINT 02 ══════════════ -->
+  <section class="bp">
+    <div class="bp-head">
+      <span class="bp-no">Blueprint 02 · Inbox</span>
+    </div>
+    <h2>Email → សេចក្តីព្រាង → អនុម័តក្នុង Telegram</h2>
+    <p class="who">
+      សម្រាប់៖ សេវាអតិថិជន · លក់ · រដ្ឋបាល ·
+      កម្រិតលំបាក៖ ★★☆ · ពេលសង់ប្រហែល ២ ម៉ោង
+    </p>
+
+    <div class="vflow">
+      <div class="step">
+        <div class="step-dot">📧</div>
+        <div class="step-body">
+          <div class="step-kind">Trigger</div>
+          <div class="step-title">Email ថ្មីមានស្លាក «អតិថិជន»</div>
+          <div class="step-desc">
+            ចាប់ផ្តើមពីស្លាកតែមួយ។ ពង្រីកទៅស្លាកផ្សេងក្រោយពីវាដំណើរការ ២ សប្តាហ៍។
+          </div>
+          <span class="step-tool">Gmail trigger · label:customer is:unread</span>
+        </div>
+      </div>
+
+      <div class="step is-ai">
+        <div class="step-dot">🤖</div>
+        <div class="step-body">
+          <div class="step-kind">AI · Classify + draft</div>
+          <div class="step-title">ចាត់ថ្នាក់ · សង្ខេប · ព្រាងចម្លើយ</div>
+          <div class="step-desc">
+            ការហៅ AI តែម្តងបញ្ចេញទាំង ៣៖ កម្រិតបន្ទាន់ · សេចក្តីសង្ខេប ·
+            និងសេចក្តីព្រាងចម្លើយ។ ចេញជា JSON។
+          </div>
+          <span class="step-tool">Prompt: em-03 · «ចាត់ថ្នាក់ Inbox ដោយស្វ័យប្រវត្តិ»</span>
+        </div>
+      </div>
+
+      <div class="step is-human">
+        <div class="step-dot">✅</div>
+        <div class="step-body">
+          <div class="step-kind">Human approval</div>
+          <div class="step-title">ផ្ញើទៅ Telegram ជាមួយប៊ូតុង ✅ / ✏️ / ❌</div>
+          <div class="step-desc">
+            សារត្រូវខ្លី៖ ឈ្មោះអតិថិជន · កម្រិតបន្ទាន់ · សំណើ · សេចក្តីព្រាង។
+            បើអានលើទូរស័ព្ទមិនចប់ក្នុង ១០ វិនាទី — សារវែងពេក។
+          </div>
+          <span class="step-tool">Telegram · inline keyboard</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">📤</div>
+        <div class="step-body">
+          <div class="step-kind">Action</div>
+          <div class="step-title">ចុច ✅ → ផ្ញើចម្លើយ · ចុច ✏️ → បើកសេចក្តីព្រាងក្នុង Gmail</div>
+          <div class="step-desc">
+            កត់ត្រារាល់ការសម្រេចចិត្តចូល Sheet — ទិន្នន័យនេះបង្ហាញថា
+            សេចក្តីព្រាងណាដែលអ្នកកែញឹកញាប់ ដើម្បីកែ Prompt ជាបន្តបន្ទាប់។
+          </div>
+          <span class="step-tool">Gmail · send / create draft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bp-detail">
+      <div class="dbox">
+        <h3>ទម្រង់សារ Telegram</h3>
+        <pre>🔴 បន្ទាន់ · សុខ តារា
+សំណើ៖ សុំពន្យារការទូទាត់ ១៥ ថ្ងៃ
+កំណត់៖ ២០ សីហា
+
+សេចក្តីព្រាង៖
+"ជម្រាបសួរលោក…"
+
+✅ ផ្ញើ   ✏️ កែ   ❌ រំលង</pre>
+      </div>
+      <div class="dbox">
+        <h3>ច្បាប់សុវត្ថិភាព</h3>
+        <ul>
+          <li>ហាមផ្ញើដោយស្វ័យប្រវត្តិក្នុង ២ សប្តាហ៍ដំបូង</li>
+          <li>ហាមផ្ញើដោយស្វ័យប្រវត្តិលើបណ្តឹងជានិច្ច</li>
+          <li>កុំដាក់ព័ត៌មានទូទាត់ក្នុងសេចក្តីព្រាង</li>
+        </ul>
+      </div>
+      <div class="dbox">
+        <h3>ករណីសាកល្បង ៣</h3>
+        <ul>
+          <li><strong>ធម្មតា៖</strong> សំណួរតម្លៃសាមញ្ញ</li>
+          <li><strong>ចម្លែក៖</strong> Email ២ ភាសាលាយគ្នា</li>
+          <li><strong>ខូច៖</strong> បណ្តឹងខឹង — ត្រូវបញ្ជូនទៅមនុស្សភ្លាម</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="impact">
+      <div><strong>12 នាទី</strong> មុន · ក្នុងមួយ Email</div>
+      <div><strong>90 វិនាទី</strong> ក្រោយ · រួមទាំងការពិនិត្យ</div>
+      <div><strong>0</strong> Email ផ្ញើដោយគ្មានមនុស្សអនុម័ត</div>
+    </div>
+  </section>
+
+  <!-- ══════════════ BLUEPRINT 03 ══════════════ -->
+  <section class="bp">
+    <div class="bp-head">
+      <span class="bp-no">Blueprint 03 · Reporting</span>
+    </div>
+    <h2>របាយការណ៍ថ្ងៃសុក្រ ដែលសរសេរខ្លួនឯង</h2>
+    <p class="who">
+      សម្រាប់៖ អ្នកគ្រប់គ្រងក្រុម · ប្រធានផ្នែក · ម្ចាស់អាជីវកម្ម ·
+      កម្រិតលំបាក៖ ★☆☆ · ពេលសង់ប្រហែល ៦០ នាទី
+    </p>
+
+    <div class="vflow">
+      <div class="step">
+        <div class="step-dot">⏰</div>
+        <div class="step-body">
+          <div class="step-kind">Trigger</div>
+          <div class="step-title">រៀងរាល់ថ្ងៃសុក្រ ម៉ោង ១៦:០០</div>
+          <div class="step-desc">
+            ដាក់ម៉ោង ១៦:០០ មិនមែន ១៧:០០ — ដើម្បីឲ្យអ្នកមានពេលពិនិត្យ
+            មុនចេញពីការិយាល័យ។
+          </div>
+          <span class="step-tool">Schedule trigger · Fri 16:00</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">📚</div>
+        <div class="step-body">
+          <div class="step-kind">Collect</div>
+          <div class="step-title">ទាញទិន្នន័យសប្តាហ៍នេះពី Sheet</div>
+          <div class="step-desc">
+            ត្រងតាមកាលបរិច្ឆេទ ៧ ថ្ងៃចុងក្រោយ។ បើគ្មានទិន្នន័យ —
+            ឈប់នៅទីនេះ ហើយផ្ញើសារប្រាប់ជំនួសការបង្កើតរបាយការណ៍ទទេ។
+          </div>
+          <span class="step-tool">Google Sheets · read range</span>
+        </div>
+      </div>
+
+      <div class="step is-ai">
+        <div class="step-dot">🤖</div>
+        <div class="step-body">
+          <div class="step-kind">AI · Write</div>
+          <div class="step-title">សរសេរសង្ខេប · លេចធ្លោ · ចំណុចជាប់គាំង</div>
+          <div class="step-desc">
+            បន្ថែមឃ្លា «បើទិន្នន័យមិនគ្រប់គ្រាន់ សូមសរសេរថាមិនគ្រប់គ្រាន់ —
+            ហាមទាយ» ដើម្បីកុំឲ្យវាប្រឌិតលេខ។
+          </div>
+          <span class="step-tool">Prompt: rp-01 · «របាយការណ៍ប្រចាំសប្តាហ៍»</span>
+        </div>
+      </div>
+
+      <div class="step is-human">
+        <div class="step-dot">👀</div>
+        <div class="step-body">
+          <div class="step-kind">Human check</div>
+          <div class="step-title">ដាក់ចូល Google Doc ជាសេចក្តីព្រាង</div>
+          <div class="step-desc">
+            កុំផ្ញើទៅចៅហ្វាយដោយផ្ទាល់នៅដំបូង។ ផ្ញើតំណ Doc មកអ្នកមុន —
+            អ្នកកែ ២ ប្រយោគ រួចទើបបញ្ជូនបន្ត។
+          </div>
+          <span class="step-tool">Google Docs · create + Telegram link</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bp-detail">
+      <div class="dbox">
+        <h3>រចនាសម្ព័ន្ធរបាយការណ៍</h3>
+        <ul>
+          <li>សង្ខេបសម្រាប់អ្នកគ្រប់គ្រង — ៣ ប្រយោគ</li>
+          <li>លទ្ធផលសម្រេចបាន — មានលេខវាស់វែង</li>
+          <li>ឧបសគ្គ + ដំណោះស្រាយស្នើ</li>
+          <li>អាទិភាពសប្តាហ៍ក្រោយ — មិនលើស ៥</li>
+        </ul>
+      </div>
+      <div class="dbox">
+        <h3>កំហុសទូទៅ</h3>
+        <ul>
+          <li>ទិន្នន័យមិនទាន់បញ្ចូលពេលដល់ម៉ោង → ដាក់ម៉ោងយឺតជាង</li>
+          <li>AI ប្រឌិតលេខ → បន្ថែមច្បាប់ «ហាមទាយ»</li>
+          <li>របាយការណ៍វែងពេក → កំណត់ចំនួនពាក្យក្នុង Prompt</li>
+        </ul>
+      </div>
+      <div class="dbox">
+        <h3>ការពង្រីកបន្ទាប់</h3>
+        <ul>
+          <li>បន្ថែមការប្រៀបធៀបនឹងសប្តាហ៍មុន</li>
+          <li>បន្ថែមក្រាហ្វិកពី Sheet</li>
+          <li>ផ្ញើកំណែខ្លីទៅ Telegram ក្រុម</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="impact">
+      <div><strong>45 នាទី</strong> មុន · រាល់ថ្ងៃសុក្រ</div>
+      <div><strong>5 នាទី</strong> ក្រោយ · ត្រឹមតែពិនិត្យ</div>
+      <div><strong>32 ម៉ោង</strong> សន្សំបានក្នុងមួយឆ្នាំ</div>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top:34px">
+    <div class="panel-label">លំដាប់ដែលណែនាំ</div>
+    <p style="margin:0 0 12px">
+      សង់ <strong class="accent">Blueprint 03</strong> មុនគេ បើនេះជាប្រព័ន្ធដំបូងរបស់អ្នក —
+      វាមានហានិភ័យទាបបំផុត ព្រោះលទ្ធផលជាសេចក្តីព្រាងដែលអ្នកអានមុនផ្ញើ។
+    </p>
+    <p style="margin:0" class="muted">
+      បន្ទាប់មក Blueprint 01 (ការវាយបញ្ចូលទិន្នន័យ) ហើយ Blueprint 02 ចុងក្រោយ —
+      ព្រោះវាប៉ះទំនាក់ទំនងអតិថិជនផ្ទាល់។
+    </p>
+  </section>
+
+</div>
+</body>
+</html>

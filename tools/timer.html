@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session Timer · AI Office Automation</title>
+<meta name="description" content="នាឡិកាតាមផ្នែកសម្រាប់វគ្គ ៦០ នាទី — ប្រើលើអេក្រង់ទី២ របស់អ្នកបង្រៀន។">
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+body { overflow: hidden; height: 100vh; }
+
+.shell {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(18px, 3vw, 34px);
+  gap: 18px;
+}
+
+.top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap;
+}
+.brand {
+  display: flex; align-items: center; gap: 11px;
+  font-family: var(--font-latin); font-weight: 800;
+  font-size: 0.68rem; letter-spacing: 0.16em; color: var(--muted);
+}
+.brand .dot {
+  width: 26px; height: 26px; border-radius: 8px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  display: grid; place-items: center; color: var(--accent); font-size: 0.8rem;
+}
+
+/* ---------- Main clock ---------- */
+
+.stage {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 22px;
+  min-height: 0;
+}
+
+.clock-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: clamp(20px, 3vw, 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.seg-name {
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.seg-sub {
+  font-family: var(--font-latin);
+  font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 22px;
+}
+
+.big {
+  font-family: var(--font-latin);
+  font-size: clamp(3.6rem, 13vw, 8rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.big.is-warn { color: #facc15; }
+.big.is-over { color: #f87171; }
+
+.big-sub {
+  font-family: var(--font-latin);
+  font-size: 0.9rem; color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 6px;
+  background: var(--surface-3);
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.bar i {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  width: 0; transition: width 0.4s ease;
+}
+.bar.is-warn i { background: #facc15; }
+.bar.is-over i { background: #f87171; }
+
+.controls { display: flex; gap: 9px; flex-wrap: wrap; }
+.controls .btn { padding: 12px 22px; }
+
+/* ---------- Agenda list ---------- */
+
+.agenda {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 20px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.agenda h2 {
+  font-family: var(--font-latin);
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+
+.seg {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px; align-items: center;
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.seg:hover { background: var(--surface-2); }
+
+.seg .n {
+  font-family: var(--font-latin); font-weight: 800;
+  font-size: 0.76rem; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.seg .t { font-size: 0.93rem; line-height: 1.4; }
+.seg .m {
+  font-family: var(--font-latin); font-size: 0.78rem;
+  color: var(--muted); white-space: nowrap;
+}
+
+.seg.is-current {
+  background: rgba(74, 222, 128, 0.1);
+  border-color: rgba(74, 222, 128, 0.4);
+}
+.seg.is-current .n { color: var(--accent); }
+
+.seg.is-done { opacity: 0.42; }
+.seg.is-done .t { text-decoration: line-through; }
+
+.foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap;
+  font-size: 0.8rem; color: var(--faint);
+}
+.foot kbd {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 5px; padding: 2px 7px;
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-2);
+}
+
+.total-line { font-family: var(--font-latin); color: var(--muted); }
+.total-line b { color: var(--text); }
+
+@media (max-width: 900px) {
+  .stage { grid-template-columns: 1fr; }
+  body { overflow-y: auto; height: auto; }
+  .shell { height: auto; min-height: 100vh; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="top">
+    <div class="brand"><span class="dot">◧</span> SESSION TIMER · 60 MIN</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="pill" href="../slides/index.html">ស្លាយ</a>
+      <a class="pill" href="../docs/02-facilitator-guide.md">មគ្គុទ្ទេសក៍</a>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="clock-card">
+      <div class="seg-sub" id="segSub">Segment 1 of 6</div>
+      <div class="seg-name" id="segName">បញ្ហាការងារការិយាល័យ</div>
+
+      <div class="big" id="big">05:00</div>
+      <div class="big-sub" id="bigSub">នៅសល់ក្នុងផ្នែកនេះ · សរុប 00:00 / 60:00</div>
+
+      <div class="bar" id="bar"><i></i></div>
+
+      <div class="controls">
+        <button class="btn btn-primary" id="btnPlay">▶ ចាប់ផ្តើម</button>
+        <button class="btn" id="btnNext">ផ្នែកបន្ទាប់ →</button>
+        <button class="btn" id="btnPrev">← ថយក្រោយ</button>
+        <button class="btn" id="btnReset">↺ កំណត់ឡើងវិញ</button>
+      </div>
+    </div>
+
+    <div class="agenda">
+      <h2>Agenda · 60 minutes</h2>
+      <div id="segs"></div>
+      <p class="total-line" style="margin:16px 0 0;font-size:0.8rem">
+        ចុចលើផ្នែកណាមួយ ដើម្បីលោតទៅផ្នែកនោះ។
+      </p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>
+      <kbd>Space</kbd> ចាប់ផ្តើម/ផ្អាក ·
+      <kbd>→</kbd> បន្ទាប់ ·
+      <kbd>←</kbd> ថយក្រោយ ·
+      <kbd>R</kbd> កំណត់ឡើងវិញ
+    </div>
+    <div class="total-line">AI Office Automation · Skill Next</div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var SEGMENTS = [
+    { name: 'បញ្ហាការងារការិយាល័យ',                     min: 5,  slides: '4–6'   },
+    { name: 'AI · Prompting · ដែនកំណត់របស់ AI',          min: 10, slides: '7–11'  },
+    { name: 'ការងារណាខ្លះដែល Automate បាន?',            min: 5,  slides: '12–14' },
+    { name: 'បង្ហាញប្រព័ន្ធពិត + សង់ជាមួយគ្នា',           min: 25, slides: '15–21' },
+    { name: 'ផ្លូវបន្ត — វគ្គសិក្សាពេញលេញ',                min: 10, slides: '22–25' },
+    { name: 'សំណួរ និងចម្លើយ · បិទ',                     min: 5,  slides: '26–28' }
+  ];
+
+  var idx = 0;
+  var segElapsed = 0;      // វិនាទីក្នុងផ្នែកបច្ចុប្បន្ន
+  var totalElapsed = 0;    // វិនាទីសរុប
+  var running = false;
+  var handle = null;
+
+  var TOTAL_SECONDS = SEGMENTS.reduce(function (s, x) { return s + x.min * 60; }, 0);
+
+  function el(id) { return document.getElementById(id); }
+
+  function fmt(sec) {
+    var neg = sec < 0;
+    var a = Math.abs(Math.round(sec));
+    var m = Math.floor(a / 60);
+    var s = a % 60;
+    return (neg ? '+' : '') + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  function segSeconds(i) { return SEGMENTS[i].min * 60; }
+
+  function renderAgenda() {
+    el('segs').innerHTML = SEGMENTS.map(function (s, i) {
+      var cls = i === idx ? ' is-current' : (i < idx ? ' is-done' : '');
+      return '<div class="seg' + cls + '" data-i="' + i + '">' +
+        '<span class="n">' + String(i + 1).padStart(2, '0') + '</span>' +
+        '<span class="t">' + s.name +
+          '<br><span class="muted" style="font-size:0.78rem">ស្លាយ ' + s.slides + '</span>' +
+        '</span>' +
+        '<span class="m">' + s.min + ' min</span>' +
+      '</div>';
+    }).join('');
+  }
+
+  function render() {
+    var seg = SEGMENTS[idx];
+    var limit = segSeconds(idx);
+    var left = limit - segElapsed;
+
+    el('segSub').textContent = 'Segment ' + (idx + 1) + ' of ' + SEGMENTS.length +
+      ' · ស្លាយ ' + seg.slides;
+    el('segName').textContent = seg.name;
+    el('big').textContent = fmt(left);
+    el('bigSub').textContent = (left < 0 ? 'លើសម៉ោងក្នុងផ្នែកនេះ' : 'នៅសល់ក្នុងផ្នែកនេះ') +
+      ' · សរុប ' + fmt(totalElapsed).replace('+', '') + ' / 60:00';
+
+    var pct = Math.min(100, (segElapsed / limit) * 100);
+    el('bar').querySelector('i').style.width = pct + '%';
+
+    var warn = left <= 60 && left > 0;
+    var over = left <= 0;
+    el('big').className = 'big' + (over ? ' is-over' : warn ? ' is-warn' : '');
+    el('bar').className = 'bar' + (over ? ' is-over' : warn ? ' is-warn' : '');
+
+    el('btnPlay').textContent = running ? '⏸ ផ្អាក' : '▶ ចាប់ផ្តើម';
+  }
+
+  function tick() {
+    segElapsed += 1;
+    totalElapsed += 1;
+    render();
+  }
+
+  function toggle() {
+    running = !running;
+    if (running) {
+      handle = setInterval(tick, 1000);
+    } else {
+      clearInterval(handle);
+    }
+    render();
+  }
+
+  function go(i) {
+    if (i < 0 || i >= SEGMENTS.length) return;
+
+    // Moving forward banks the full planned time so the running
+    // total stays honest even when a segment is cut short.
+    if (i > idx) {
+      totalElapsed += Math.max(0, segSeconds(idx) - segElapsed);
+    } else {
+      totalElapsed = SEGMENTS.slice(0, i).reduce(function (s, x) {
+        return s + x.min * 60;
+      }, 0);
+    }
+
+    idx = i;
+    segElapsed = 0;
+    renderAgenda();
+    render();
+  }
+
+  function reset() {
+    running = false;
+    clearInterval(handle);
+    idx = 0;
+    segElapsed = 0;
+    totalElapsed = 0;
+    renderAgenda();
+    render();
+  }
+
+  el('btnPlay').addEventListener('click', toggle);
+  el('btnNext').addEventListener('click', function () { go(idx + 1); });
+  el('btnPrev').addEventListener('click', function () { go(idx - 1); });
+  el('btnReset').addEventListener('click', function () {
+    if (confirm('កំណត់នាឡិកាឡើងវិញមែនទេ?')) reset();
+  });
+
+  el('segs').addEventListener('click', function (e) {
+    var row = e.target.closest('[data-i]');
+    if (row) go(parseInt(row.getAttribute('data-i'), 10));
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === ' ')          { e.preventDefault(); toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); go(idx + 1); }
+    else if (e.key === 'ArrowLeft')  { e.preventDefault(); go(idx - 1); }
+    else if (e.key === 'r' || e.key === 'R') { reset(); }
+  });
+
+  // TOTAL_SECONDS is the planned 60 minutes; surfaced for sanity checks.
+  if (TOTAL_SECONDS !== 3600) {
+    console.warn('ផ្នែកទាំងអស់សរុប ' + (TOTAL_SECONDS / 60) + ' នាទី — មិនស្មើ ៦០ ទេ។');
+  }
+
+  renderAgenda();
+  render();
+})();
+</script>
+</body>
+</html>
