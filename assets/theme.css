@@ -1,0 +1,261 @@
+/* ============================================================
+   AI Office Automation — Shared Theme
+   Skill Next · Eath Suo
+   Dark / green workshop identity used across slides, prompt
+   library, certificates and teaching tools.
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg:          #050706;
+  --bg-grad:     radial-gradient(120% 90% at 50% -10%, #0d1a13 0%, #050706 55%);
+  --surface:     #10150f;
+  --surface-2:   #161d18;
+  --surface-3:   #1c2620;
+  --border:      #1f2a23;
+  --border-soft: #182019;
+
+  /* Brand */
+  --accent:      #4ade80;
+  --accent-2:    #22c55e;
+  --accent-dim:  #1a3325;
+  --accent-glow: rgba(74, 222, 128, 0.18);
+
+  /* Text */
+  --text:        #f1f5f2;
+  --text-2:      #b9c4bd;
+  --muted:       #7d8b83;
+  --faint:       #4a544e;
+
+  /* Type */
+  --font-latin:  "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-khmer:  "Kantumruy Pro", "Noto Sans Khmer", "Khmer OS Battambang",
+                 "Khmer OS", "Nokora", sans-serif;
+  --font-ui:     var(--font-khmer), var(--font-latin);
+  --font-mono:   "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+
+  /* Rhythm */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* Light mode is intentionally not offered: the workshop identity is
+   a dark stage theme. Printed assets (certificate) override this. */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image: var(--bg-grad);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Typographic primitives ---------- */
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-latin);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 42px;
+  height: 2px;
+  background: var(--accent);
+  flex: none;
+  border-radius: 2px;
+}
+
+.accent { color: var(--accent); }
+.muted  { color: var(--muted); }
+.dim    { color: var(--text-2); }
+
+h1, h2, h3, h4 {
+  margin: 0 0 0.5em;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(1.9rem, 5.2vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 3.6vw, 2.4rem); }
+h3 { font-size: clamp(1.1rem, 2.2vw, 1.4rem); }
+
+p { margin: 0 0 1em; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code, kbd, pre { font-family: var(--font-mono); }
+
+/* ---------- Numbered list cards (the workshop signature) ---------- */
+
+.rows { display: grid; gap: 12px; }
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.row:hover { border-color: var(--accent-dim); }
+
+.row .num {
+  font-family: var(--font-latin);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 1.6em;
+  font-variant-numeric: tabular-nums;
+}
+
+.row .body { min-width: 0; }
+
+.row .title {
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.row .sub {
+  font-family: var(--font-latin);
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.row .meta {
+  font-family: var(--font-latin);
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Highlighted row — the "this is the important one" state */
+.row.is-key {
+  background: linear-gradient(180deg, rgba(74, 222, 128, 0.09), rgba(74, 222, 128, 0.03));
+  border-color: rgba(74, 222, 128, 0.32);
+}
+
+.row.is-key .title { color: var(--text); }
+
+/* ---------- Panels ---------- */
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 26px;
+}
+
+.panel-label {
+  font-family: var(--font-latin);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+/* ---------- Pills / chips ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-family: var(--font-latin);
+  font-size: 0.8rem;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.pill:hover { border-color: var(--accent-dim); color: var(--text); }
+
+.pill.is-active {
+  background: rgba(74, 222, 128, 0.14);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn:hover { border-color: var(--accent-dim); background: var(--surface-3); }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #04140a;
+}
+
+.btn-primary:hover { background: #6ee79b; border-color: #6ee79b; }
+
+/* ---------- Utility ---------- */
+
+.stack   { display: grid; gap: 16px; }
+.cluster { display: flex; flex-wrap: wrap; gap: 10px; }
+.center  { text-align: center; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }

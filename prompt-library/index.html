@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt Library · AI Office Automation</title>
+<meta name="description" content="បណ្ណាល័យ Prompt ជាភាសាខ្មែរសម្រាប់ការងារការិយាល័យ — ចម្លងបានភ្លាម។ Skill Next។">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand-row">
+      <div class="brand"><span class="dot">◧</span> SKILL NEXT · AI OFFICE AUTOMATION</div>
+      <a class="pill" href="../slides/index.html">← ត្រឡប់ទៅស្លាយ</a>
+    </div>
+    <p class="eyebrow">Prompt Library · ភាសាខ្មែរ</p>
+    <h1>Prompt សម្រាប់ការងារ<span class="accent">ការិយាល័យ</span></h1>
+    <p class="sub">
+      រាល់ Prompt សរសេរតាមរូបមន្ត <strong class="accent">R · T · C · F</strong>
+      (Role · Task · Context · Format) ដែលយើងរៀនក្នុងវគ្គ។
+      ចម្លង → បំពេញកន្លែង <code>{{…}}</code> → បិទភ្ជាប់ចូល ChatGPT ឬ Claude។
+    </p>
+  </header>
+
+  <div class="controls">
+    <div class="search-row">
+      <div class="search-box">
+        <span class="icon">🔍</span>
+        <input id="search" type="search" autocomplete="off"
+          placeholder="ស្វែងរក… (ឧ. email, របាយការណ៍, JSON) — ចុច / ដើម្បីស្វែងរក">
+      </div>
+    </div>
+    <div class="filters">
+      <div class="filter-group" id="catFilters"></div>
+      <div class="filter-group" id="levelFilters"></div>
+    </div>
+    <p class="count-line" id="count"></p>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <footer class="foot">
+    <div>AI Office Automation · Prompt Library · Skill Next</div>
+    <div>ធ្វើបច្ចុប្បន្នភាព៖ សីហា ២០២៦</div>
+  </footer>
+
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <button class="modal-close" id="modalClose" aria-label="បិទ">✕</button>
+      <h2 id="modalTitle"></h2>
+      <div class="en" id="modalEn"></div>
+    </div>
+    <div class="modal-body">
+      <div class="prompt-text" id="modalText"></div>
+      <div class="tip-box" id="modalTip"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modalCopy">📋 ចម្លង Prompt</button>
+        <button class="btn" id="modalFav">☆ រក្សាទុក</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/prompts.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

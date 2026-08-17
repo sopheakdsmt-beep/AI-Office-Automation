@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Office Automation · Workshop Deck</title>
+<meta name="description" content="ការងារ ៨ ម៉ោង — សល់ត្រឹម ២ ម៉ោង។ វគ្គបណ្តុះបណ្តាល AI Office Automation ដោយ Skill Next។">
+<link rel="stylesheet" href="../assets/theme.css">
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="timer" id="timer">
+  <span id="timerVal">00:00 / 60:00</span>
+  <button id="timerReset" title="Reset timer (R)">↺</button>
+</div>
+
+<main class="deck" id="deck">
+
+  <!-- ═══════════════ 01 · COVER ═══════════════ -->
+  <section class="slide is-active" data-title="ក្របមុខ · Cover"
+    data-notes="ស្វាគមន៍ ៣០ វិនាទី។ សួរសំណួរបើកឆាក៖ «អ្នកណាធ្វើការលើសម៉ោងយ៉ាងតិច ២ដងក្នុងមួយសប្តាហ៍?» | ប្រាប់ច្បាស់៖ ថ្ងៃនេះមិនមែនរៀនកូដទេ — យើងសង់ប្រព័ន្ធពិតជាមួយគ្នា។ | រំលឹកឲ្យបើក Chat ទុក — យើងប្រើវាពេញមួយវគ្គ។">
+    <div class="slide-inner cover">
+      <div class="logo-mark">SKILL<br>NEXT</div>
+      <p class="eyebrow">Free Workshop · 14 August 2026</p>
+      <h1>ការងារ <span class="accent">៨</span> ម៉ោង — សល់ត្រឹម <span class="accent">២</span> ម៉ោង</h1>
+      <p class="lead">
+        ជាមួយ <strong class="accent">AI Office Automation</strong><br>
+        ខ្ញុំ AI ធ្វើការការិយាល័យដដែលៗជំនួសលោកអ្នក
+      </p>
+      <div class="speaker-chip">
+        <div class="avatar">ES</div>
+        <div>
+          <div class="name">អ៊ាត់ សួរ (Eath Suo)</div>
+          <div class="role">Founder · Skill Next</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 02 · SPEAKER ═══════════════ -->
+  <section class="slide" data-title="អ្នកនិយាយ · Speaker"
+    data-notes="កុំណែនាំខ្លួនលើសពី ៩០ វិនាទី។ | ភ្ជាប់សាវតាទៅនឹងបញ្ហារបស់ពួកគេ៖ «ខ្ញុំធ្លាប់ចំណាយពេលរាល់យប់ថ្ងៃសុក្រធ្វើ Report ដូចលោកអ្នកដែរ»។ | បន្តទៅ Agenda ភ្លាម។">
+    <div class="slide-inner">
+      <p class="eyebrow">Who is speaking</p>
+      <h2>ជំរាបសួរ ខ្ញុំឈ្មោះ <span class="accent">អ៊ាត់ សួរ</span></h2>
+      <div class="rows">
+        <div class="row">
+          <div class="num">01</div>
+          <div class="body">
+            <div class="title">Founder នៅ <span class="accent">Skill Next</span> · ជំនាញអនាគត</div>
+            <div class="sub">Digital · AI · AI Automation</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">02</div>
+          <div class="body">
+            <div class="title">Part-time Content Creator នៅ Cambodia 4.0</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">03</div>
+          <div class="body">
+            <div class="title">ការងារមុន — គ្រូបង្រៀន ICT នៅ KOOMPI</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">04</div>
+          <div class="body">
+            <div class="title">Founding Creator នៅ Sala (KOOMPI × MOEYS)</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 03 · AGENDA ═══════════════ -->
+  <section class="slide" data-title="កម្មវិធី · Agenda"
+    data-notes="បង្ហាញផ្លូវដំណើរច្បាស់ៗ ដើម្បីឲ្យអ្នកចូលរួមដឹងថាពេលណាដល់វេនគេអនុវត្ត។ | បញ្ជាក់ថាចំណុច ០៤ (២៥នាទី) គឺជាបេះដូងនៃវគ្គ — យើងសង់ជាមួយគ្នា។ | ប្រាប់ជាមុនថា សំណួរសួរបានពេញមួយវគ្គក្នុង Chat។">
+    <div class="slide-inner">
+      <p class="eyebrow">Agenda · 60 minutes</p>
+      <h2>ថ្ងៃនេះយើងរៀនអ្វីខ្លះ?</h2>
+      <div class="rows">
+        <div class="row">
+          <div class="num">01</div>
+          <div class="body"><div class="title">បញ្ហាការងារការិយាល័យ</div></div>
+          <div class="meta">5 min</div>
+        </div>
+        <div class="row">
+          <div class="num">02</div>
+          <div class="body"><div class="title">AI · Prompting · ដែនកំណត់របស់ AI</div></div>
+          <div class="meta">10 min</div>
+        </div>
+        <div class="row">
+          <div class="num">03</div>
+          <div class="body"><div class="title">ការងារណាខ្លះដែល Automate បាន?</div></div>
+          <div class="meta">5 min</div>
+        </div>
+        <div class="row is-key">
+          <div class="num">04</div>
+          <div class="body"><div class="title">បង្ហាញប្រព័ន្ធពិតជាក់ស្តែង + <span class="accent">ប្រព័ន្ធថ្មីលើកដំបូង</span></div></div>
+          <div class="meta">25 min</div>
+        </div>
+        <div class="row">
+          <div class="num">05</div>
+          <div class="body"><div class="title">ផ្លូវបន្ត — វគ្គសិក្សាពេញលេញ</div></div>
+          <div class="meta">10 min</div>
+        </div>
+        <div class="row">
+          <div class="num">06</div>
+          <div class="body"><div class="title">សំណួរ និងចម្លើយ</div></div>
+          <div class="meta">5 min</div>
+        </div>
+      </div>
+      <p class="agenda-total">សរុប · 60 នាទី</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 04 · SECTION 01 DIVIDER ═══════════════ -->
+  <section class="slide divider" data-title="ផ្នែក ០១ · បញ្ហា"
+    data-notes="ប្តូរសំឡេងឲ្យស្ងាត់ជាងមុនបន្តិច — នេះជាផ្នែកអារម្មណ៍។ | គោលដៅ៖ ឲ្យអ្នកចូលរួមស្គាល់ខ្លួនឯងក្នុងបញ្ហា មុននឹងឃើញដំណោះស្រាយ។">
+    <div class="slide-inner">
+      <div class="kicker">01</div>
+      <p class="eyebrow">Section 01 · The Problem</p>
+      <h2>ម៉ោងការងារបាត់ទៅណា?</h2>
+      <p class="lead">មុននឹងនិយាយពី AI — យើងត្រូវដឹងជាមុនសិនថា ពេលវេលារបស់យើងលេចធ្លាយត្រង់ណា។</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 05 · THE PROBLEM ═══════════════ -->
+  <section class="slide" data-title="បញ្ហា ៣ យ៉ាង"
+    data-notes="នេះជាស្លាយអន្តរកម្មទី១។ រង់ចាំចម្លើយក្នុង Chat យ៉ាងតិច ២០ វិនាទី — កុំប្រញាប់។ | អានលេខឡើងឮៗ៖ «ខ្ញុំឃើញលេខ ២ ច្រើនណាស់…» ធ្វើឲ្យអ្នកចូលរួមមានអារម្មណ៍ថាគេមិននៅម្នាក់ឯង។ | បញ្ចប់ដោយឃ្លាចុងក្រោយ — និយាយយឺតៗ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 01 · The Problem</p>
+      <h2>មួយណាជាបញ្ហាដែលលោកអ្នក<br>ឆ្លាប់ជួប?</h2>
+      <p class="hint">តើមួយណាដែលប្រហែលនឹងលោកអ្នកបំផុត? សរសេរលេខ ១ · ២ ឬ ៣ ក្នុង Chat 👇</p>
+      <div class="rows">
+        <div class="row">
+          <div class="num">01</div>
+          <div class="body">
+            <div class="sub" style="margin:0 0 4px">FRIDAY 5PM</div>
+            <div class="title">អង្គុយធ្វើ Report ថ្ងៃសុក្រយប់ ខណៈគេចេញអស់ហើយ</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">02</div>
+          <div class="body">
+            <div class="sub" style="margin:0 0 4px">DATA ENTRY</div>
+            <div class="title">វាយ Invoice ចូល Excel មួយមួយៗ ពេញមួយថ្ងៃ</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">03</div>
+          <div class="body">
+            <div class="sub" style="margin:0 0 4px">INBOX</div>
+            <div class="title">ឆ្លើយ Email ដដែលៗ រាប់សិបដងក្នុងមួយថ្ងៃ</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+      </div>
+      <div class="callout">
+        ការងារទាំងនេះមិនពិបាកទេ — វាត្រូវការតែ<span class="accent">ស៊ីពេល</span>។<br>
+        ហើយពេលវេលាហ្នឹង គឺជារបស់លោកអ្នក។
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 06 · THE MATH ═══════════════ -->
+  <section class="slide" data-title="តម្លៃពេលវេលា"
+    data-notes="គណនាឲ្យឃើញផ្ទាល់ភ្នែក។ សុំឲ្យអ្នកចូលរួមម្នាក់ប្រាប់ការងារដដែលៗរបស់គេ រួចគណនាជាមួយគ្នា។ | ចំណុចសំខាន់៖ ២ម៉ោង/ថ្ងៃ = ១២សប្តាហ៍ការងារក្នុងមួយឆ្នាំ។ នេះមិនមែនជាការនិយាយបំផ្លើសទេ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 01 · The Math</p>
+      <h2>តោះគណនាឲ្យឃើញច្បាស់</h2>
+      <p class="hint">សន្មតថាលោកអ្នកចំណាយ ២ ម៉ោង/ថ្ងៃ លើការងារដដែលៗ។</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="v">2h</div>
+          <div class="k">ក្នុងមួយថ្ងៃ<br><span class="muted">Copy · Paste · Format · Send</span></div>
+        </div>
+        <div class="stat">
+          <div class="v">10h</div>
+          <div class="k">ក្នុងមួយសប្តាហ៍<br><span class="muted">ស្មើនឹងមួយថ្ងៃកន្លះ</span></div>
+        </div>
+        <div class="stat">
+          <div class="v">480h</div>
+          <div class="k">ក្នុងមួយឆ្នាំ<br><span class="muted">ស្មើនឹង ១២ សប្តាហ៍ការងារ</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        សំណួរមិនមែន «តើ AI ជំនួសខ្ញុំបានទេ?»<br>
+        សំណួរពិតគឺ «<span class="accent">តើខ្ញុំយក ១២ សប្តាហ៍នោះមកវិញយ៉ាងណា?</span>»
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 07 · SECTION 02 DIVIDER ═══════════════ -->
+  <section class="slide divider" data-title="ផ្នែក ០២ · គោលគំនិត"
+    data-notes="ប្តូរអារម្មណ៍ពី «បញ្ហា» ទៅ «ការយល់ដឹង»។ | ប្រាប់ថាផ្នែកនេះខ្លីតែសំខាន់បំផុត — បើយល់ខុសពាក្យទាំង៣នេះ គេនឹងសង់ប្រព័ន្ធខុស។">
+    <div class="slide-inner">
+      <div class="kicker">02</div>
+      <p class="eyebrow">Section 02 · AI → Agent → Automation</p>
+      <h2>យល់ពាក្យឲ្យត្រូវ មុននឹងសង់</h2>
+      <p class="lead">មនុស្សភាគច្រើនប្រើពាក្យទាំង ៣ នេះជំនួសគ្នា។ តែវាជារបស់ខុសគ្នាទាំងស្រុង។</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 08 · THREE WORDS ═══════════════ -->
+  <section class="slide" data-title="AI · Agent · Automation"
+    data-notes="នេះជាស្លាយគ្រឹះនៃវគ្គទាំងមូល។ ចំណាយពេល ៣ នាទីពេញ។ | ប្រៀបធៀបងាយៗ៖ AI = អ្នកប្រឹក្សា · Agent = បុគ្គលិក · Automation = ម៉ោងរោទ៍ដែលហៅបុគ្គលិកឲ្យធ្វើការ។ | បញ្ជាក់ខ្លាំង៖ AI ដែលគ្មាន Automation នៅតែស៊ីម៉ោងរបស់អ្នក ព្រោះអ្នកនៅតែត្រូវអង្គុយចុច។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 02 · AI → Agent → Automation</p>
+      <h2>ពាក្យទាំងនេះ — <span class="accent">ខុសគ្នាត្រង់ណា?</span></h2>
+      <div class="stack">
+        <div class="concept">
+          <div class="tag">01 · AI</div>
+          <h3>អ្នកសួរ — វាឆ្លើយ</h3>
+          <p>លោកអ្នកត្រូវអង្គុយធ្វើវាល់ដង។ គ្មានអ្នកសួរ = គ្មានលទ្ធផល។</p>
+          <div class="example">ឧ. Copy កំណត់ចំណាំដាក់ចូល ChatGPT «សង្ខេបឲ្យខ្ញុំ» — វាល់ដង</div>
+        </div>
+        <div class="concept">
+          <div class="tag">02 · AI Agent</div>
+          <h3>ឲ្យឧបករណ៍ និងខួបករណ៍ — វាធ្វើជាំហានៗ</h3>
+          <p>វាសម្រេចជំហានបន្ទាប់ដោយខ្លួនឯង តែលោកអ្នកនៅតែជាអ្នកចាប់ផ្តើម។</p>
+          <div class="example">ឧ. ដកទិន្នន័យពី Invoice → ពិនិត្យ → រៀបជាតារាង</div>
+        </div>
+        <div class="concept is-key">
+          <div class="tag">03 · AI Automation</div>
+          <h3>មាន Trigger — វាចាប់ផ្តើមដោយខ្លួនឯង</h3>
+          <p>លោកអ្នកមិននៅក្នុងបន្ទប់ ការងារក៏ដើរដែរ។</p>
+          <div class="example">ឧ. Email ចូល → AI សរសេរចម្លើយ → មក Telegram ឲ្យខ្ញុំ Approve</div>
+        </div>
+      </div>
+      <div class="callout">
+        AI ដែលគ្មាន Automation — <span class="accent">នៅតែស៊ីម៉ោងរបស់លោកអ្នក។</span><br>
+        Automation ទើបជាផ្នែកដែលប្រគល់ពេលវេលាមកវិញ។
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 09 · WHAT AI CANNOT DO ═══════════════ -->
+  <section class="slide" data-title="ដែនកំណត់របស់ AI"
+    data-notes="ស្លាយនេះសង់ទំនុកចិត្ត។ វាបង្ហាញថាយើងមិនលក់ក្តីសុបិន្តទេ។ | ចំណុចខ្លាំងបំផុត៖ AI មិនដឹងអ្វីដែលវាមិនដឹង — ដូច្នេះត្រូវមាន «មនុស្សពិនិត្យ» នៅចំណុចសម្រេចចិត្ត។ | ភ្ជាប់ទៅផ្នែកសុវត្ថិភាពទិន្នន័យនៅចុងវគ្គ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 02 · Limits</p>
+      <h2>អ្វីដែល AI <span class="accent">ធ្វើបានល្អ</span> និងអ្វីដែលមិនទាន់បាន</h2>
+      <div class="cols">
+        <div class="checklist">
+          <div class="check">
+            <div class="mark">✓</div>
+            <div class="txt">សង្ខេប · បកប្រែ · រៀបរចនាសម្ព័ន្ធអត្ថបទ
+              <small>ការងារភាសា — ភាពត្រឹមត្រូវខ្ពស់</small></div>
+          </div>
+          <div class="check">
+            <div class="mark">✓</div>
+            <div class="txt">ដកទិន្នន័យចេញពីឯកសារមិនរៀបរយ
+              <small>Invoice · បង្កាន់ដៃ · Email → តារាង</small></div>
+          </div>
+          <div class="check">
+            <div class="mark">✓</div>
+            <div class="txt">ចាត់ថ្នាក់ និងតម្រៀបតាមប្រភេទ
+              <small>Email ណាបន្ទាន់ · Feedback ណាអវិជ្ជមាន</small></div>
+          </div>
+          <div class="check">
+            <div class="mark">✓</div>
+            <div class="txt">សរសេរសេចក្តីព្រាងលើកទី១
+              <small>មិនមែនលើកចុងក្រោយ — មនុស្សត្រូវពិនិត្យ</small></div>
+          </div>
+        </div>
+        <div class="checklist">
+          <div class="check">
+            <div class="mark no">✕</div>
+            <div class="txt">ធានាលេខគណនេយ្យ ១០០%
+              <small>ត្រូវមានច្បាប់ត្រួតពិនិត្យ ឬមនុស្សអនុម័ត</small></div>
+          </div>
+          <div class="check">
+            <div class="mark no">✕</div>
+            <div class="txt">ដឹងបរិបទក្នុងក្រុមហ៊ុនដែលមិនបានប្រាប់
+              <small>វាមិនស្គាល់អតិថិជនរបស់អ្នក បើអ្នកមិនផ្តល់ទិន្នន័យ</small></div>
+          </div>
+          <div class="check">
+            <div class="mark no">✕</div>
+            <div class="txt">ទទួលខុសត្រូវលើការសម្រេចចិត្ត
+              <small>ការអនុម័តចុងក្រោយ = មនុស្ស ជានិច្ច</small></div>
+          </div>
+          <div class="check">
+            <div class="mark no">✕</div>
+            <div class="txt">ដឹងថាខ្លួនវាឆ្លើយខុស
+              <small>វាអាចប្រាកដក្នុងចម្លើយខុស — ត្រូវផ្ទៀងផ្ទាត់</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="callout">
+        ច្បាប់មាស៖ AI សរសេរសេចក្តីព្រាង — <span class="accent">មនុស្សចុចអនុម័ត។</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 10 · PROMPT FORMULA ═══════════════ -->
+  <section class="slide" data-title="រូបមន្ត Prompt"
+    data-notes="បង្រៀនរូបមន្ត R-T-C-F ដោយប្រើឧទាហរណ៍ផ្ទាល់។ | សុំឲ្យអ្នកចូលរួមផ្ញើការងារមួយក្នុង Chat រួចយើងសង់ Prompt ជាមួយគ្នាភ្លាមៗ។ | ប្រាប់ថា Prompt Library មាន ៥០+ Prompt រួចជាស្រេច — Link នៅចុងវគ្គ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 02 · Prompting</p>
+      <h2>រូបមន្ត <span class="accent">R · T · C · F</span></h2>
+      <p class="hint">Prompt ល្អមិនមែនវែងទេ — វាច្បាស់។ បួនចំណុចនេះគ្រប់គ្រាន់សម្រាប់ការងារ ៩០%។</p>
+      <div class="rows">
+        <div class="row">
+          <div class="num">R</div>
+          <div class="body">
+            <div class="title">Role — ឲ្យវាដឹងថាវាជានរណា</div>
+            <div class="sub">«អ្នកគឺជាជំនួយការរដ្ឋបាលដែលមានបទពិសោធន៍ ១០ ឆ្នាំ»</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">T</div>
+          <div class="body">
+            <div class="title">Task — ប្រាប់ការងារជាក់លាក់ តែមួយ</div>
+            <div class="sub">«សង្ខេប Email នេះជា ៣ ចំណុច និងទាញយកកាលបរិច្ឆេទកំណត់»</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">C</div>
+          <div class="body">
+            <div class="title">Context — ផ្តល់ទិន្នន័យ និងច្បាប់</div>
+            <div class="sub">«អតិថិជនជាដៃគូចាស់ · សំឡេងសរសេរផ្លូវការ · ជាភាសាខ្មែរ»</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row is-key">
+          <div class="num">F</div>
+          <div class="body">
+            <div class="title">Format — កំណត់ទម្រង់លទ្ធផល</div>
+            <div class="sub">«ចេញជា JSON មាន key: subject, urgency, deadline, summary»</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+      </div>
+      <div class="callout">
+        <span class="accent">Format</span> គឺជាចំណុចដែលមនុស្សភ្លេចច្រើនបំផុត —<br>
+        ហើយវាជាចំណុចដែលធ្វើឲ្យ Automation ដំណើរការបាន។
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 11 · PROMPT BEFORE / AFTER ═══════════════ -->
+  <section class="slide" data-title="Prompt មុន · ក្រោយ"
+    data-notes="បង្ហាញលទ្ធផលពិតបើអាច — បើកអេក្រង់ពិត។ | ចំណុចបង្រៀន៖ Prompt ខាងស្តាំអាចដោតចូល Automation បាន ព្រោះលទ្ធផលមានរចនាសម្ព័ន្ធ។ Prompt ខាងឆ្វេងមិនអាច។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 02 · Prompting</p>
+      <h2>ភាពខុសគ្នាឃើញភ្លាមៗ</h2>
+      <div class="prompt-compare">
+        <div class="prompt-box is-bad">
+          <div class="label">✕ Prompt ខ្សោយ</div>
+          <pre>សង្ខេប email នេះឲ្យខ្ញុំ</pre>
+          <p class="muted" style="margin:14px 0 0;font-size:0.84rem">
+            លទ្ធផល៖ អត្ថបទវែង ទម្រង់ប្រែប្រួលរាល់ដង — យកទៅដោតជាមួយ Sheet មិនបាន។
+          </p>
+        </div>
+        <div class="prompt-box is-good">
+          <div class="label">✓ Prompt រឹងមាំ</div>
+          <pre>Role: អ្នកជាជំនួយការការិយាល័យជនជាតិខ្មែរ។
+
+Task: អាន Email ខាងក្រោម រួចដក
+ព័ត៌មានសំខាន់ចេញ។
+
+Context: ក្រុមហ៊ុនយើងលក់សម្ភារៈការិយាល័យ។
+Email មកពីអតិថិជន។
+
+Format: ចេញជា JSON តែប៉ុណ្ណោះ៖
+{
+  "urgency": "high|normal|low",
+  "customer": "",
+  "request": "",
+  "deadline": "YYYY-MM-DD ឬ null",
+  "reply_draft": ""
+}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 12 · SECTION 03 DIVIDER ═══════════════ -->
+  <section class="slide divider" data-title="ផ្នែក ០៣ · អ្វីដែល Automate បាន"
+    data-notes="ផ្នែកខ្លី ៥ នាទី។ គោលដៅ៖ ឲ្យគេចេះជ្រើសរើសការងារត្រឹមត្រូវ ដើម្បីកុំឲ្យខាតពេលសង់ប្រព័ន្ធខុស។">
+    <div class="slide-inner">
+      <div class="kicker">03</div>
+      <p class="eyebrow">Section 03 · What to automate</p>
+      <h2>ការងារណាខ្លះដែល Automate បាន?</h2>
+      <p class="lead">មិនមែនគ្រប់ការងារសមនឹង Automate ទេ។ មានតេស្តងាយៗ ៤ សំណួរ។</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 13 · THE 4 TESTS ═══════════════ -->
+  <section class="slide" data-title="តេស្ត ៤ សំណួរ"
+    data-notes="ដើរតេស្តនេះជាមួយការងារពិតរបស់អ្នកចូលរួមម្នាក់ ផ្ទាល់លើឆាក។ | បើឆ្លើយ «បាទ/ចាស» គ្រប់ ៤ = ចាប់ផ្តើមភ្លាម។ បើ ៣ = សង់បានតែត្រូវមានមនុស្សអនុម័ត។ បើក្រោម ២ = កុំទាន់។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 03 · The filter</p>
+      <h2>តេស្ត ៤ សំណួរ មុននឹងសង់</h2>
+      <div class="rows">
+        <div class="row">
+          <div class="num">01</div>
+          <div class="body">
+            <div class="title">តើវាកើតឡើងដដែលៗទេ?</div>
+            <div class="sub">យ៉ាងតិច ១ ដងក្នុងមួយសប្តាហ៍ — បើមួយឆ្នាំម្តង កុំខាតពេល</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">02</div>
+          <div class="body">
+            <div class="title">តើមានច្បាប់ច្បាស់លាស់ទេ?</div>
+            <div class="sub">អ្នកអាចពន្យល់ដល់បុគ្គលិកថ្មីក្នុង ៥ នាទីបានទេ?</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">03</div>
+          <div class="body">
+            <div class="title">តើទិន្នន័យស្ថិតក្នុងកន្លែងឌីជីថលទេ?</div>
+            <div class="sub">Email · Sheet · Form · PDF — មិនមែនក្នុងក្បាលអ្នកតែម្នាក់</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row is-key">
+          <div class="num">04</div>
+          <div class="body">
+            <div class="title">បើវាធ្វើខុស តើប៉ះពាល់ធ្ងន់ធ្ងរប៉ុណ្ណា?</div>
+            <div class="sub">ហានិភ័យខ្ពស់ → ត្រូវមានជំហាន «មនុស្សអនុម័ត» ជាដាច់ខាត</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+      </div>
+      <div class="callout">
+        ចាប់ផ្តើមពីការងារ <span class="accent">ដដែលៗ · ច្បាប់ច្បាស់ · ហានិភ័យទាប</span> ជានិច្ច។
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 14 · TASK AUDIT ═══════════════ -->
+  <section class="slide" data-title="សវនកម្មការងារ"
+    data-notes="នេះជាកិច្ចការអនុវត្តទី១។ ឲ្យពេល ២ នាទីសរសេរ។ | ចែក Link តារាង Task Audit (tools/task-audit.html)។ | សុំអ្នកស្ម័គ្រចិត្ត ២ នាក់អានឡើងឮៗ — យើងជ្រើសមួយយកទៅសង់នៅផ្នែកបន្ទាប់។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 03 · Your turn</p>
+      <h2>សរសេរការងារ ៣ យ៉ាងរបស់លោកអ្នក</h2>
+      <p class="hint">យក ២ នាទី។ សរសេរការងារដដែលៗ ៣ យ៉ាងដែលស៊ីពេលអ្នកបំផុតក្នុងមួយសប្តាហ៍។</p>
+      <div class="flow">
+        <div class="flow-node">
+          <div class="n-label">Trigger</div>
+          <div class="n-text">អ្វីធ្វើឲ្យការងារនេះចាប់ផ្តើម?</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">Steps</div>
+          <div class="n-text">អ្នកចុចអ្វីខ្លះ ជាជំហានៗ?</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">Output</div>
+          <div class="n-text">លទ្ធផលចុងក្រោយទៅណា?</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node is-human">
+          <div class="n-label">Human check</div>
+          <div class="n-text">ត្រង់ណាដែលត្រូវការមនុស្សអនុម័ត?</div>
+        </div>
+      </div>
+      <div class="callout">
+        បើលោកអ្នកសរសេរ ៤ ប្រអប់នេះបាន — <span class="accent">លោកអ្នកបានរចនាប្រព័ន្ធរួចហើយ។</span><br>
+        អ្វីដែលនៅសល់ គ្រាន់តែជាការតភ្ជាប់ប៉ុណ្ណោះ។
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 15 · SECTION 04 DIVIDER ═══════════════ -->
+  <section class="slide divider" data-title="ផ្នែក ០៤ · សង់ផ្ទាល់"
+    data-notes="បេះដូងនៃវគ្គ — ២៥ នាទី។ ពិនិត្យនាឡិកា៖ ត្រូវនៅត្រឹមនាទីទី ២០។ | បើយឺត កាត់ Blueprint ទី៣ ចោល តែកុំកាត់ការសង់ផ្ទាល់។">
+    <div class="slide-inner">
+      <div class="kicker">04</div>
+      <p class="eyebrow">Section 04 · Live build · 25 min</p>
+      <h2>ឥឡូវយើងសង់វាជាមួយគ្នា</h2>
+      <p class="lead">ប្រព័ន្ធពិត ៣ ដែលកំពុងដំណើរការ — បន្ទាប់មកលោកអ្នកសង់ប្រព័ន្ធដំបូងរបស់ខ្លួន។</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 16 · TOOL STACK ═══════════════ -->
+  <section class="slide" data-title="ឧបករណ៍ដែលប្រើ"
+    data-notes="បញ្ជាក់ថាឧបករណ៍ទាំងអស់នេះមានកម្រិតឥតគិតថ្លៃ។ | កុំចំណាយពេលលើសពី ២ នាទី — គេចង់ឃើញការសង់ជាងបញ្ជីឧបករណ៍។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 04 · Stack</p>
+      <h2>ឧបករណ៍ដែលយើងប្រើថ្ងៃនេះ</h2>
+      <p class="hint">ទាំងអស់មានកម្រិតឥតគិតថ្លៃ — មិនចាំបាច់ចេះសរសេរកូដ។</p>
+      <div class="res-grid">
+        <div class="res">
+          <div class="t">Google Workspace</div>
+          <div class="d">Gmail · Sheets · Forms · Drive — ជាកន្លែងទុកទិន្នន័យ</div>
+        </div>
+        <div class="res">
+          <div class="t">AI Model</div>
+          <div class="d">Claude ឬ ChatGPT — ជា «ខួរក្បាល» សម្រាប់អាន និងសរសេរ</div>
+        </div>
+        <div class="res">
+          <div class="t">n8n / Make</div>
+          <div class="d">ជាកន្លែងតភ្ជាប់ — អូសទម្លាក់ គ្មានកូដ</div>
+        </div>
+        <div class="res">
+          <div class="t">Apps Script</div>
+          <div class="d">សម្រាប់អ្នកចង់ស្នាក់នៅក្នុង Google ១០០%</div>
+        </div>
+        <div class="res">
+          <div class="t">Telegram</div>
+          <div class="d">ជាកន្លែងទទួលការជូនដំណឹង និងចុចអនុម័ត</div>
+        </div>
+        <div class="res">
+          <div class="t">Prompt Library</div>
+          <div class="d">បណ្ណាល័យ Prompt ៥០+ របស់វគ្គនេះ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 17 · BLUEPRINT 1 ═══════════════ -->
+  <section class="slide" data-title="ប្រព័ន្ធ ១ · Invoice"
+    data-notes="បង្ហាញការរត់ពិត៖ ផ្ញើ Invoice គំរូចូល Inbox ហើយឲ្យគេមើលជួរថ្មីលេចក្នុង Sheet។ | ចំណុចលក់៖ ការងារ ១៥ នាទី → ២០ វិនាទី។ | ចង្អុលទៅជំហានពណ៌លឿង — មនុស្សនៅតែពិនិត្យ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Blueprint 01 · Data entry</p>
+      <h2>Invoice → Google Sheet ស្វ័យប្រវត្តិ</h2>
+      <div class="flow">
+        <div class="flow-node">
+          <div class="n-label">Trigger</div>
+          <div class="n-text">Email មាន PDF ចូល Inbox</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">AI</div>
+          <div class="n-text">អាន PDF ដកលេខ Invoice · ថ្ងៃ · ចំនួនទឹកប្រាក់</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">Check</div>
+          <div class="n-text">សរុបត្រូវនឹងចំនួនទេ? លេខស្ទួនទេ?</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">Action</div>
+          <div class="n-text">បន្ថែមជួរថ្មីក្នុង Sheet</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node is-human">
+          <div class="n-label">Human</div>
+          <div class="n-text">ករណីមិនប្រាកដ → ផ្ញើទៅ Telegram</div>
+        </div>
+      </div>
+      <div class="stats" style="margin-top:26px">
+        <div class="stat"><div class="v">15 នាទី</div><div class="k">មុន · ក្នុងមួយ Invoice</div></div>
+        <div class="stat"><div class="v">20 វិនាទី</div><div class="k">ក្រោយ · ដោយស្វ័យប្រវត្តិ</div></div>
+        <div class="stat"><div class="v">100%</div><div class="k">ករណីមិនប្រាកដ ត្រូវមនុស្សពិនិត្យ</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 18 · BLUEPRINT 2 ═══════════════ -->
+  <section class="slide" data-title="ប្រព័ន្ធ ២ · Email"
+    data-notes="នេះជាប្រព័ន្ធដែលអ្នកចូលរួមចូលចិត្តបំផុត។ បង្ហាញ Telegram ផ្ទាល់លើទូរស័ព្ទ។ | បញ្ជាក់ខ្លាំង៖ វាមិនផ្ញើ Email ដោយខ្លួនឯងទេ — វារង់ចាំអ្នកចុច Approve។ នេះជាចំណុចទំនុកចិត្ត។">
+    <div class="slide-inner">
+      <p class="eyebrow">Blueprint 02 · Inbox</p>
+      <h2>Email → សេចក្តីព្រាង → អនុម័តក្នុង Telegram</h2>
+      <div class="flow">
+        <div class="flow-node">
+          <div class="n-label">Trigger</div>
+          <div class="n-text">Email ថ្មីមានស្លាក «អតិថិជន»</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">AI</div>
+          <div class="n-text">ចាត់ថ្នាក់បន្ទាន់ · សង្ខេប · ព្រាងចម្លើយ</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node is-human">
+          <div class="n-label">Approve</div>
+          <div class="n-text">ផ្ញើទៅ Telegram ជាមួយប៊ូតុង ✅ / ✏️</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">Action</div>
+          <div class="n-text">ចុច ✅ → ផ្ញើចម្លើយភ្លាម</div>
+        </div>
+      </div>
+      <div class="callout">
+        លោកអ្នកមិនបានបាត់បង់ការគ្រប់គ្រងទេ —<br>
+        លោកអ្នកគ្រាន់តែ<span class="accent">លែងចាំបាច់សរសេរពីដើមទៀត</span>។
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 19 · BLUEPRINT 3 ═══════════════ -->
+  <section class="slide" data-title="ប្រព័ន្ធ ៣ · Report"
+    data-notes="ភ្ជាប់ត្រឡប់ទៅស្លាយបញ្ហាទី១ — «ថ្ងៃសុក្រ ម៉ោង ៥»។ នេះជាការបិទរង្វង់។ | បើពេលវេលាតឹង អាចរំលងស្លាយនេះ ហើយបង្ហាញតែលទ្ធផលចុងក្រោយ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Blueprint 03 · Reporting</p>
+      <h2>Report ថ្ងៃសុក្រ — ដែលសរសេរខ្លួនឯង</h2>
+      <div class="flow">
+        <div class="flow-node">
+          <div class="n-label">Trigger</div>
+          <div class="n-text">រៀងរាល់ថ្ងៃសុក្រ ម៉ោង ៤ រសៀល</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">Collect</div>
+          <div class="n-text">ទាញទិន្នន័យសប្តាហ៍នេះពី Sheet</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">AI</div>
+          <div class="n-text">សរសេរសង្ខេប · លេចធ្លោ · ចំណុចជាប់គាំង</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="n-label">Deliver</div>
+          <div class="n-text">ដាក់ចូល Doc + ផ្ញើទៅចៅហ្វាយ</div>
+        </div>
+      </div>
+      <div class="callout">
+        ថ្ងៃសុក្រ ម៉ោង ៥ — <span class="accent">លោកអ្នកចេញពីការិយាល័យជាមួយគេ។</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 20 · BUILD IT LIVE ═══════════════ -->
+  <section class="slide" data-title="សង់ជាមួយគ្នា ៥ ជំហាន"
+    data-notes="នេះជាផ្នែកអនុវត្តផ្ទាល់ — ១២ នាទី។ ចែកអេក្រង់។ | ដើរយឺតៗនៅជំហានទី ២ និង ៤ ព្រោះជាកន្លែងគេជាប់គាំងច្រើនបំផុត។ | ប្រាប់គេថាកុំបារម្ភបើតាមមិនទាន់ — មានវីដេអូថតទុក និងឯកសារជំហានៗ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 04 · Build with me</p>
+      <h2>ប្រព័ន្ធដំបូងរបស់លោកអ្នក — <span class="accent">៥ ជំហាន</span></h2>
+      <div class="rows">
+        <div class="row">
+          <div class="num">01</div>
+          <div class="body">
+            <div class="title">បង្កើត Google Sheet ១ ជាកន្លែងទទួលទិន្នន័យ</div>
+            <div class="sub">ដាក់ចំណងជើងជួរឈរឲ្យច្បាស់ — នេះជាកិច្ចសន្យារវាង AI និងទិន្នន័យ</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">02</div>
+          <div class="body">
+            <div class="title">កំណត់ Trigger — អ្វីដែលចាប់ផ្តើមប្រព័ន្ធ</div>
+            <div class="sub">Email ចូល · Form បញ្ជូន · ឬម៉ោងកំណត់</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">03</div>
+          <div class="body">
+            <div class="title">ដាក់ Prompt ចូល (R·T·C·F) ហើយបង្ខំឲ្យចេញជា JSON</div>
+            <div class="sub">យក Prompt ត្រៀមរួចពី Prompt Library</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row is-key">
+          <div class="num">04</div>
+          <div class="body">
+            <div class="title">បន្ថែមជំហានមនុស្សអនុម័ត</div>
+            <div class="sub">Telegram ឬ Email — កុំរំលងជំហាននេះនៅដំបូង</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <div class="row">
+          <div class="num">05</div>
+          <div class="body">
+            <div class="title">សាកល្បង ៣ ដង ដោយប្រើទិន្នន័យពិត</div>
+            <div class="sub">ករណីធម្មតា ១ · ករណីចម្លែក ១ · ករណីខូច ១</div>
+          </div>
+          <div class="meta"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 21 · GUARDRAILS ═══════════════ -->
+  <section class="slide" data-title="សុវត្ថិភាព និងទិន្នន័យ"
+    data-notes="ស្លាយនេះឆ្លើយសំណួរដែលចៅហ្វាយនឹងសួរគេនៅថ្ងៃច័ន្ទ។ | បញ្ជាក់ច្បាប់៖ កុំដាក់លេខអត្តសញ្ញាណប័ណ្ណ · លេខគណនីធនាគារ · កិច្ចសន្យាសម្ងាត់ ចូល AI សាធារណៈ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Section 04 · Guardrails</p>
+      <h2>សុវត្ថិភាព — មុននឹងយកទៅប្រើពិត</h2>
+      <div class="checklist">
+        <div class="check">
+          <div class="mark">1</div>
+          <div class="txt">ចាប់ផ្តើមក្នុងរបៀបព្រាងជានិច្ច
+            <small>រយៈពេល ២ សប្តាហ៍ដំបូង៖ AI ព្រាង មនុស្សផ្ញើ។ បន្ទាប់មកទើបបន្ធូរ។</small></div>
+        </div>
+        <div class="check">
+          <div class="mark">2</div>
+          <div class="txt">កុំដាក់ទិន្នន័យរសើបចូល AI សាធារណៈ
+            <small>លេខអត្តសញ្ញាណប័ណ្ណ · គណនីធនាគារ · ប្រាក់ខែបុគ្គលិក · កិច្ចសន្យាសម្ងាត់</small></div>
+        </div>
+        <div class="check">
+          <div class="mark">3</div>
+          <div class="txt">រក្សាកំណត់ហេតុគ្រប់ដំណើរការ
+            <small>Sheet មួយសន្លឹកកត់ថា៖ ពេលណា · ធ្វើអ្វី · លទ្ធផលអ្វី</small></div>
+        </div>
+        <div class="check">
+          <div class="mark">4</div>
+          <div class="txt">មានប៊ូតុងបិទបន្ទាន់
+            <small>ត្រូវដឹងច្បាស់ថាបិទប្រព័ន្ធយ៉ាងណា ក្នុងរយៈពេល ១០ វិនាទី</small></div>
+        </div>
+        <div class="check">
+          <div class="mark">5</div>
+          <div class="txt">ប្រាប់ក្រុមការងារ និងចៅហ្វាយជាមុន
+            <small>Automation ដែលគេមិនដឹង = បញ្ហាទំនុកចិត្ត មិនមែនបញ្ហាបច្ចេកទេស</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 22 · SECTION 05 DIVIDER ═══════════════ -->
+  <section class="slide divider" data-title="ផ្នែក ០៥ · ផ្លូវបន្ត"
+    data-notes="ប្តូរទៅផ្នែកផ្តល់ជូន។ កុំសុំទោសដែលលក់ — គេមកព្រោះគេចង់បន្ត។ | រំលឹកលទ្ធផលដែលគេទើបសង់បាននៅ ១០ នាទីមុន។">
+    <div class="slide-inner">
+      <div class="kicker">05</div>
+      <p class="eyebrow">Section 05 · What's next</p>
+      <h2>ផ្លូវបន្ត — វគ្គសិក្សាពេញលេញ</h2>
+      <p class="lead">ថ្ងៃនេះលោកអ្នកសង់បាន ១ ប្រព័ន្ធ។ វគ្គពេញលេញសង់បាន ១២។</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 23 · CURRICULUM ═══════════════ -->
+  <section class="slide" data-title="មាតិកាវគ្គពេញលេញ"
+    data-notes="ដើរលឿនៗ ១ ម៉ូឌុល ១ ឃ្លា។ កុំអានពេញ។ | បញ្ជាក់ថាម៉ូឌុលទី ៤ គឺជាអ្វីដែលគេទើបភ្លក់រសជាតិថ្ងៃនេះ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Full course · 6 modules · 18 hours</p>
+      <h2>AI for Office Automation — មាតិកាពេញលេញ</h2>
+      <div class="rows">
+        <div class="row">
+          <div class="num">M1</div>
+          <div class="body">
+            <div class="title">គ្រឹះ AI សម្រាប់ការិយាល័យ</div>
+            <div class="sub">Model · Token · Context · ការជ្រើសរើសឧបករណ៍</div>
+          </div>
+          <div class="meta">3h</div>
+        </div>
+        <div class="row">
+          <div class="num">M2</div>
+          <div class="body">
+            <div class="title">Prompt Engineering សម្រាប់ការងារពិត</div>
+            <div class="sub">R·T·C·F · លទ្ធផលមានរចនាសម្ព័ន្ធ · បណ្ណាល័យផ្ទាល់ខ្លួន</div>
+          </div>
+          <div class="meta">3h</div>
+        </div>
+        <div class="row">
+          <div class="num">M3</div>
+          <div class="body">
+            <div class="title">ស្វ័យប្រវត្តិកម្មឯកសារ និងទិន្នន័យ</div>
+            <div class="sub">PDF · Invoice · Sheet · Drive</div>
+          </div>
+          <div class="meta">3h</div>
+        </div>
+        <div class="row is-key">
+          <div class="num">M4</div>
+          <div class="body">
+            <div class="title">សង់ Workflow ពិតដោយគ្មានកូដ</div>
+            <div class="sub">n8n · Make · Apps Script · ជំហានមនុស្សអនុម័ត</div>
+          </div>
+          <div class="meta">4h</div>
+        </div>
+        <div class="row">
+          <div class="num">M5</div>
+          <div class="body">
+            <div class="title">AI Agent សម្រាប់ក្រុមការងារ</div>
+            <div class="sub">ជំនួយការផ្ទៃក្នុង · ចំណេះដឹងក្រុមហ៊ុន · Telegram Bot</div>
+          </div>
+          <div class="meta">3h</div>
+        </div>
+        <div class="row">
+          <div class="num">M6</div>
+          <div class="body">
+            <div class="title">សុវត្ថិភាព · ការវាស់វែង · គម្រោងបញ្ចប់</div>
+            <div class="sub">គោលការណ៍ទិន្នន័យ · គណនាពេលវេលាសន្សំបាន · បង្ហាញគម្រោង</div>
+          </div>
+          <div class="meta">2h</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 24 · OFFER ═══════════════ -->
+  <section class="slide" data-title="ការចុះឈ្មោះ"
+    data-notes="បង្ហាញ QR យ៉ាងតិច ៦០ វិនាទី — កុំប្តូរស្លាយលឿន។ | អានលក្ខខណ្ឌពិសេសឲ្យច្បាស់ និងកាលបរិច្ឆេទផុតកំណត់។ | សុំឲ្យគេចុះឈ្មោះឥឡូវនេះ ខណៈនៅក្នុងវគ្គ។">
+    <div class="slide-inner">
+      <p class="eyebrow">Enrolment</p>
+      <h2>ចុះឈ្មោះចូលរៀនវគ្គពេញលេញ</h2>
+      <div class="cta-block">
+        <div>
+          <div class="qr-slot">ដាក់ QR<br>ទៅទម្រង់ចុះឈ្មោះ</div>
+        </div>
+        <div>
+          <div class="checklist">
+            <div class="check">
+              <div class="mark">✓</div>
+              <div class="txt">ថ្នាក់ផ្ទាល់ ៦ ម៉ូឌុល · ១៨ ម៉ោង
+                <small>មានវីដេអូថតទុកមើលឡើងវិញបាន</small></div>
+            </div>
+            <div class="check">
+              <div class="mark">✓</div>
+              <div class="txt">Template និង Workflow ត្រៀមរួច ១២
+                <small>យកទៅដោតប្រើនៅការិយាល័យបានភ្លាម</small></div>
+            </div>
+            <div class="check">
+              <div class="mark">✓</div>
+              <div class="txt">Prompt Library ៥០+ ជាភាសាខ្មែរ
+                <small>ធ្វើបច្ចុប្បន្នភាពជាប្រចាំ</small></div>
+            </div>
+            <div class="check">
+              <div class="mark">✓</div>
+              <div class="txt">វិញ្ញាបនបត្របញ្ចប់វគ្គសិក្សា
+                <small>ផ្ទៀងផ្ទាត់បានតាមលេខកូដ</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 25 · RESOURCES ═══════════════ -->
+  <section class="slide" data-title="ធនធានឥតគិតថ្លៃ"
+    data-notes="ចែក Link ទាំងអស់ក្នុង Chat ភ្លាមៗ ខណៈស្លាយនេះនៅលើអេក្រង់។ | រំលឹកឲ្យធ្វើតេស្តវាយតម្លៃ — វាជាលក្ខខណ្ឌទទួលវិញ្ញាបនបត្រចូលរួម។">
+    <div class="slide-inner">
+      <p class="eyebrow">Free resources</p>
+      <h2>យកទៅប្រើបានភ្លាមថ្ងៃនេះ</h2>
+      <div class="res-grid">
+        <div class="res">
+          <div class="t">📚 Prompt Library</div>
+          <div class="d">Prompt ៥០+ សម្រាប់ការងារការិយាល័យ ចម្លងបានភ្លាម</div>
+        </div>
+        <div class="res">
+          <div class="t">📋 តារាងសវនកម្មការងារ</div>
+          <div class="d">រកការងារដែលគួរ Automate មុនគេ</div>
+        </div>
+        <div class="res">
+          <div class="t">🧩 Workflow Blueprint ៣</div>
+          <div class="d">ដ្យាក្រាមពេញលេញនៃប្រព័ន្ធថ្ងៃនេះ</div>
+        </div>
+        <div class="res">
+          <div class="t">✅ តេស្តវាយតម្លៃ</div>
+          <div class="d">សំណួរ ១៥ · ត្រូវបាន ៧០% ដើម្បីទទួលវិញ្ញាបនបត្រ</div>
+        </div>
+        <div class="res">
+          <div class="t">🎓 វិញ្ញាបនបត្រចូលរួម</div>
+          <div class="d">ផ្ញើតាម Email ក្នុងរយៈពេល ៤៨ ម៉ោង</div>
+        </div>
+        <div class="res">
+          <div class="t">💬 ក្រុម Telegram</div>
+          <div class="d">សួរសំណួរបន្ទាប់ពីវគ្គ · ចែករំលែកប្រព័ន្ធ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 26 · Q&A ═══════════════ -->
+  <section class="slide divider" data-title="ផ្នែក ០៦ · សំណួរ"
+    data-notes="ត្រៀមចម្លើយសម្រាប់សំណួរញឹកញាប់៖ តម្លៃ · AI ជំនួសការងារ · ភាសាខ្មែរ · សុវត្ថិភាពទិន្នន័យ។ | បើគ្មានសំណួរ សួរខ្លួនឯង៖ «សំណួរដែលគេសួរខ្ញុំច្រើនបំផុតគឺ…»។">
+    <div class="slide-inner">
+      <div class="kicker">06</div>
+      <p class="eyebrow">Section 06 · Q&amp;A</p>
+      <h2>សំណួរ និងចម្លើយ</h2>
+      <p class="lead">សរសេរសំណួរក្នុង Chat — យើងឆ្លើយឲ្យបានច្រើនតាមតែអាច។</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 27 · ONE ACTION ═══════════════ -->
+  <section class="slide" data-title="សកម្មភាពមួយ"
+    data-notes="ស្លាយបិទ។ ទាមទារការប្តេជ្ញាតូចមួយ — សរសេរក្នុង Chat។ | ការប្តេជ្ញាសាធារណៈបង្កើនអត្រាអនុវត្តយ៉ាងច្រើន។">
+    <div class="slide-inner">
+      <p class="eyebrow">Before you close this tab</p>
+      <h2>សកម្មភាព <span class="accent">តែមួយ</span> សម្រាប់ថ្ងៃស្អែក</h2>
+      <p class="statement">
+        ជ្រើសរើសការងារដដែលៗ <span class="accent">មួយ</span> ដែលស៊ីពេលអ្នកបំផុត —
+        ហើយសង់ជំហានទី១ របស់វានៅថ្ងៃស្អែក។
+      </p>
+      <div class="callout">
+        សរសេរក្នុង Chat ថា៖ «ខ្ញុំនឹង Automate ______ នៅថ្ងៃស្អែក»<br>
+        <span class="muted" style="font-weight:400;font-size:0.9rem">
+          មិនចាំបាច់ធំទេ។ ចាប់ផ្តើមតូច ហើយឲ្យវាដំណើរការ។
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 28 · THANK YOU ═══════════════ -->
+  <section class="slide" data-title="អរគុណ · Thank you"
+    data-notes="បន្សល់ស្លាយនេះលើអេក្រង់ខណៈឆ្លើយសំណួរចុងក្រោយ។ | រំលឹកម្តងទៀត៖ ធ្វើតេស្ត → ទទួលវិញ្ញាបនបត្រ។">
+    <div class="slide-inner cover">
+      <div class="logo-mark">SKILL<br>NEXT</div>
+      <p class="eyebrow">Thank you · អរគុណ</p>
+      <h1>ការងារ ៨ ម៉ោង —<br>សល់ត្រឹម <span class="accent">២ ម៉ោង</span></h1>
+      <p class="lead">
+        សូមអរគុណដែលបានចំណាយពេល ៦០ នាទីជាមួយគ្នា។<br>
+        ជំហានបន្ទាប់៖ ធ្វើតេស្តវាយតម្លៃ → ទទួលវិញ្ញាបនបត្រ។
+      </p>
+      <div class="speaker-chip">
+        <div class="avatar">ES</div>
+        <div>
+          <div class="name">អ៊ាត់ សួរ (Eath Suo)</div>
+          <div class="role">Founder · Skill Next</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="notes" id="notes"></div>
+
+<div class="overview" id="overview">
+  <p class="eyebrow" style="max-width:1200px;margin:0 auto 20px">
+    Slide overview · ចុច Esc ដើម្បីបិទ
+  </p>
+  <div class="overview-grid" id="overviewGrid"></div>
+</div>
+
+<footer class="deck-footer">
+  <div class="brand">AI Office Automation · Workshop · Skill Next</div>
+  <div class="deck-controls">
+    <span class="slide-no" id="slideNo">01 / 28</span>
+    <button class="ctrl" id="btnNotes" title="Speaker notes (N)">📝</button>
+    <button class="ctrl" id="btnTimer" title="Timer (T)">⏱</button>
+    <button class="ctrl" id="btnFull" title="Fullscreen (F)">⛶</button>
+    <button class="ctrl" id="btnPrev" title="Previous (←)">←</button>
+    <button class="ctrl" id="btnNext" title="Next (→)">→</button>
+  </div>
+</footer>
+
+<script src="assets/deck.js"></script>
+</body>
+</html>
