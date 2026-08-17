@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Office Automation · Skill Next</title>
+<meta name="description" content="វគ្គបណ្តុះបណ្តាល AI for Office Automation — ស្លាយ · Prompt Library · ឧបករណ៍បង្រៀន · វិញ្ញាបនបត្រ។">
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+body { overflow-y: auto; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px) 90px; }
+
+.hero { padding: clamp(44px, 8vw, 90px) 0 40px; }
+
+.logo-mark {
+  width: 56px; height: 56px; border-radius: 15px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  display: grid; place-items: center;
+  font-family: var(--font-latin); font-weight: 800;
+  font-size: 0.58rem; letter-spacing: 0.06em; line-height: 1.15;
+  color: var(--accent); text-align: center; margin-bottom: 28px;
+}
+
+.hero h1 { font-size: clamp(1.9rem, 5.4vw, 3.2rem); max-width: 16ch; margin-bottom: 18px; }
+.hero .lead { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-2); max-width: 52ch; }
+
+.speaker-chip {
+  display: inline-flex; align-items: center; gap: 13px;
+  margin-top: 26px; padding: 9px 20px 9px 9px;
+  border-radius: 999px;
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.28);
+}
+.speaker-chip .avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-2), #0f6b3a);
+  display: grid; place-items: center;
+  font-family: var(--font-latin); font-weight: 800;
+  color: #04140a; font-size: 0.82rem;
+}
+.speaker-chip .name { font-weight: 700; font-size: 0.95rem; }
+.speaker-chip .role { font-family: var(--font-latin); font-size: 0.74rem; color: var(--accent); }
+
+/* ---------- Sections ---------- */
+
+.section { padding-top: 42px; }
+.section > h2 { font-size: clamp(1.25rem, 2.8vw, 1.7rem); margin-bottom: 6px; }
+.section > .note { color: var(--muted); margin: 0 0 22px; max-width: 62ch; font-size: 0.94rem; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+a.card {
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+a.card:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.card .ico { font-size: 1.5rem; margin-bottom: 14px; }
+.card .kind {
+  font-family: var(--font-latin);
+  font-size: 0.64rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+.card h3 { font-size: 1.05rem; margin-bottom: 7px; }
+.card p { font-size: 0.89rem; color: var(--muted); margin: 0 0 14px; }
+.card .go {
+  margin-top: auto;
+  font-family: var(--font-latin);
+  font-size: 0.8rem; color: var(--accent); font-weight: 600;
+}
+
+/* Doc list */
+.doclist { display: grid; gap: 10px; }
+
+a.doc {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px; align-items: center;
+  padding: 15px 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  text-decoration: none; color: inherit;
+  transition: border-color 0.16s ease;
+}
+a.doc:hover { border-color: var(--accent-dim); text-decoration: none; }
+a.doc .n {
+  font-family: var(--font-latin); font-weight: 800;
+  color: var(--accent); font-size: 0.82rem;
+}
+a.doc .t { font-weight: 600; font-size: 0.97rem; }
+a.doc .d { font-size: 0.84rem; color: var(--muted); margin-top: 3px; }
+a.doc .arrow { color: var(--muted); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+.stat {
+  padding: 20px; border-radius: var(--r-md);
+  background: var(--surface-2); border: 1px solid var(--border-soft);
+}
+.stat .v {
+  font-family: var(--font-latin); font-size: 1.7rem;
+  font-weight: 800; color: var(--accent); line-height: 1;
+}
+.stat .k { font-size: 0.85rem; color: var(--text-2); margin-top: 8px; }
+
+.foot {
+  margin-top: 60px; padding-top: 26px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="logo-mark">SKILL<br>NEXT</div>
+    <p class="eyebrow">Training Course · <span class="km">វគ្គបណ្តុះបណ្តាល</span></p>
+    <h1>AI for <span class="accent">Office Automation</span></h1>
+    <p class="lead">
+      ការងារ ៨ ម៉ោង — សល់ត្រឹម ២ ម៉ោង។<br>
+      វគ្គបណ្តុះបណ្តាលពេញលេញ៖ ស្លាយ · ផែនការបង្រៀន · បណ្ណាល័យ Prompt ·
+      ទម្រង់ចុះឈ្មោះ · តេស្តវាយតម្លៃ · វិញ្ញាបនបត្រ និងឧបករណ៍បង្រៀន។
+    </p>
+    <div class="speaker-chip">
+      <div class="avatar">ES</div>
+      <div>
+        <div class="name">អ៊ាត់ សួរ (Eath Suo)</div>
+        <div class="role">Founder · Skill Next</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">28</div><div class="k">ស្លាយបទបង្ហាញ</div></div>
+      <div class="stat"><div class="v">50</div><div class="k">Prompt ជាភាសាខ្មែរ</div></div>
+      <div class="stat"><div class="v">15</div><div class="k">សំណួរតេស្តវាយតម្លៃ</div></div>
+      <div class="stat"><div class="v">60</div><div class="k">នាទី · សិក្ខាសាលា</div></div>
+    </div>
+  </header>
+
+  <!-- ─────────── សម្រាប់អ្នករៀន ─────────── -->
+  <section class="section">
+    <p class="eyebrow">For participants · <span class="km">សម្រាប់អ្នករៀន</span></p>
+    <h2>ធនធានសម្រាប់អ្នកចូលរួម</h2>
+    <p class="note">
+      បើកទាំងនេះក្នុងវគ្គ ហើយរក្សាទុកជា Bookmark សម្រាប់ប្រើក្រោយវគ្គ។
+    </p>
+
+    <div class="cards">
+      <a class="card" href="prompt-library/index.html">
+        <div class="ico">📚</div>
+        <div class="kind">Web app</div>
+        <h3>Prompt Library</h3>
+        <p>
+          Prompt ៥០ ជាភាសាខ្មែរសម្រាប់ការងារការិយាល័យ — ស្វែងរក · ត្រង ·
+          រក្សាទុក · ចម្លងបានភ្លាម។
+        </p>
+        <span class="go">បើក →</span>
+      </a>
+
+      <a class="card" href="tools/task-audit.html">
+        <div class="ico">🔍</div>
+        <div class="kind">Interactive tool</div>
+        <h3>តារាងសវនកម្មការងារ</h3>
+        <p>
+          សរសេរការងារដដែលៗរបស់អ្នក ហើយឲ្យវាគណនាថាមួយណាគួរ Automate មុនគេ
+          និងសន្សំបានប៉ុន្មានម៉ោង/ឆ្នាំ។
+        </p>
+        <span class="go">បើក →</span>
+      </a>
+
+      <a class="card" href="tools/workflow-blueprints.html">
+        <div class="ico">🧩</div>
+        <div class="kind">Reference</div>
+        <h3>Workflow Blueprints</h3>
+        <p>
+          ដ្យាក្រាមពេញលេញនៃប្រព័ន្ធ ៣ ដែលបង្ហាញក្នុងវគ្គ — រួមទាំងជំហាន
+          Prompt និងករណីសាកល្បង។
+        </p>
+        <span class="go">បើក →</span>
+      </a>
+
+      <a class="card" href="docs/03-participant-handout.md">
+        <div class="ico">📄</div>
+        <div class="kind">Handout</div>
+        <h3>ឯកសារសម្រាប់អ្នកចូលរួម</h3>
+        <p>
+          ២ ទំព័របោះពុម្ពបាន — រូបមន្ត R·T·C·F · តេស្ត ៤ សំណួរ · គំរូ Prompt
+          និងកន្លែងសរសេរ។
+        </p>
+        <span class="go">អាន →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── សម្រាប់អ្នកបង្រៀន ─────────── -->
+  <section class="section">
+    <p class="eyebrow">For facilitators · <span class="km">សម្រាប់អ្នកបង្រៀន</span></p>
+    <h2>ឧបករណ៍ដឹកនាំវគ្គ</h2>
+    <p class="note">
+      អ្វីគ្រប់យ៉ាងដែលត្រូវការដើម្បីដឹកនាំវគ្គនេះ — សូម្បីតែអ្នកមិនមែនជាអ្នកសរសេរវា។
+    </p>
+
+    <div class="cards">
+      <a class="card" href="slides/index.html">
+        <div class="ico">🎬</div>
+        <div class="kind">Presentation</div>
+        <h3>ស្លាយបទបង្ហាញ</h3>
+        <p>
+          ២៨ ស្លាយ · មានកំណត់ចំណាំអ្នកបង្រៀន (N) · នាឡិកា ៦០ នាទី (T) ·
+          តារាងស្លាយ (O) · បំប្លែងជា PDF បាន។
+        </p>
+        <span class="go">បើកស្លាយ →</span>
+      </a>
+
+      <a class="card" href="tools/timer.html">
+        <div class="ico">⏱</div>
+        <div class="kind">Interactive tool</div>
+        <h3>នាឡិកាតាមផ្នែក</h3>
+        <p>
+          តាមដានពេលវេលាតាមផ្នែកទាំង ៦ ដាច់ដោយឡែក។ ប្រើលើអេក្រង់ទី២
+          ខណៈបង្ហាញស្លាយលើអេក្រង់ទី១។
+        </p>
+        <span class="go">បើក →</span>
+      </a>
+
+      <a class="card" href="certificate/index.html">
+        <div class="ico">🎓</div>
+        <div class="kind">Generator</div>
+        <h3>ឧបករណ៍បង្កើតវិញ្ញាបនបត្រ</h3>
+        <p>
+          បង្កើតម្នាក់ ឬច្រើននាក់ក្នុងពេលតែមួយពីបញ្ជីឈ្មោះ។
+          មានពណ៌ស (បោះពុម្ព) និងខ្មៅ (PDF ឌីជីថល)។
+        </p>
+        <span class="go">បើក →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── ឯកសារ ─────────── -->
+  <section class="section">
+    <p class="eyebrow">Documentation · <span class="km">ឯកសារ</span></p>
+    <h2>ផែនការ និងមគ្គុទ្ទេសក៍</h2>
+
+    <div class="doclist">
+      <a class="doc" href="docs/01-lesson-plan.md">
+        <span class="n">01</span>
+        <span>
+          <span class="t">ផែនការបង្រៀន · Lesson Plan</span>
+          <span class="d">គោលបំណងសិក្សា · ផែនការតាមនាទី · ការវាយតម្លៃ · សូចនាករជោគជ័យ</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="doc" href="docs/02-facilitator-guide.md">
+        <span class="n">02</span>
+        <span>
+          <span class="t">មគ្គុទ្ទេសក៍អ្នកសម្របសម្រួល</span>
+          <span class="d">បញ្ជីត្រួតពិនិត្យ · ស្គ្រីបបើកឆាក · សំណួរញឹកញាប់ · ផែនការបម្រុង</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="doc" href="docs/03-participant-handout.md">
+        <span class="n">03</span>
+        <span>
+          <span class="t">ឯកសារសម្រាប់អ្នកចូលរួម</span>
+          <span class="d">២ ទំព័របោះពុម្ពបាន — សម្រាប់សរសេរក្នុងវគ្គ</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="doc" href="docs/04-setup-guide.md">
+        <span class="n">04</span>
+        <span>
+          <span class="t">ការតម្លើងប្រព័ន្ធ · Setup Guide</span>
+          <span class="d">របៀបតម្លើងទម្រង់ · តេស្ត · វិញ្ញាបនបត្រ ក្នុង ៤៥ នាទី</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── ស្គ្រីប ─────────── -->
+  <section class="section">
+    <p class="eyebrow">Google Forms · Apps Script</p>
+    <h2>ស្គ្រីបបង្កើតទម្រង់ដោយស្វ័យប្រវត្តិ</h2>
+    <p class="note">
+      បិទភ្ជាប់ចូល <a href="https://script.google.com">script.google.com</a> ហើយចុច Run —
+      វានឹងបង្កើតទម្រង់ តារាងចម្លើយ និងអ៊ីមែលស្វ័យប្រវត្តិជូនអ្នក។
+      សូមអានឯកសារទី ០៤ ជាមុនសិន។
+    </p>
+
+    <div class="doclist">
+      <a class="doc" href="apps-script/1-registration-form.gs">
+        <span class="n">1</span>
+        <span>
+          <span class="t">ទម្រង់ចុះឈ្មោះ · Registration form</span>
+          <span class="d">១៤ សំណួរ · តារាងតាមដាន · អ៊ីមែលបញ្ជាក់ · ការរំលឹកមុនវគ្គ</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="doc" href="apps-script/2-assessment-quiz.gs">
+        <span class="n">2</span>
+        <span>
+          <span class="t">តេស្តវាយតម្លៃ · Assessment quiz</span>
+          <span class="d">១៥ សំណួរ · ដាក់ពិន្ទុស្វ័យប្រវត្តិ · ជាប់ ៧០% · អ៊ីមែលលទ្ធផល</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="doc" href="apps-script/3-certificate-mailer.gs">
+        <span class="n">3</span>
+        <span>
+          <span class="t">ផ្ញើវិញ្ញាបនបត្រ · Certificate mailer</span>
+          <span class="d">បង្កើត PDF · រក្សាទុកក្នុង Drive · ផ្ញើអ៊ីមែល · មិនផ្ញើស្ទួន</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="doc" href="apps-script/4-feedback-form.gs">
+        <span class="n">4</span>
+        <span>
+          <span class="t">ទម្រង់មតិយោបល់ · Feedback form</span>
+          <span class="d">១០ សំណួរ · អនាមិក · ផ្ទាំងសង្ខេប NPS ស្វ័យប្រវត្តិ</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>AI Office Automation · Skill Next · អ៊ាត់ សួរ (Eath Suo)</div>
+    <div>សីហា ២០២៦</div>
+  </footer>
+
+</div>
+</body>
+</html>

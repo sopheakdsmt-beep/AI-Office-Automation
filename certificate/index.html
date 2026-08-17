@@ -12,6 +12,17 @@
    Print:  A4 landscape, one certificate per page.
    ============================================================ */
 
+/* Bundled Khmer face — see assets/theme.css for why this ships with
+   the repo rather than relying on the machine having one. */
+@font-face {
+  font-family: "AIOA Khmer";
+  src: url("../assets/fonts/noto-sans-khmer.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;
+}
+
 :root {
   --ink:      #0d1712;
   --ink-2:    #3d4a43;
@@ -20,7 +31,9 @@
   --accent:   #16a34a;
   --paper:    #fdfdfb;
   --edge:     #d9e2dc;
-  --font-km:  "Kantumruy Pro", "Noto Sans Khmer", "Khmer OS Battambang", "Khmer OS", sans-serif;
+  --font-km:  "AIOA Khmer", "Noto Sans Khmer", "Kantumruy Pro",
+              "Khmer UI", "Khmer Sangam MN", "Khmer MN",
+              "Khmer OS Battambang", "Khmer OS", sans-serif;
   --font-en:  "Georgia", "Times New Roman", serif;
   --font-ui:  var(--font-km), "Inter", system-ui, sans-serif;
 }
@@ -141,6 +154,9 @@ body {
   text-transform: uppercase; color: #7d8b83; margin-bottom: 14px;
 }
 
+/* Khmer opts out of tracking/uppercasing — see assets/theme.css */
+.km { font-family: var(--font-km); letter-spacing: normal; text-transform: none; }
+
 /* ---------------- Certificate ---------------- */
 
 .sheet {
@@ -195,7 +211,7 @@ body {
 .content {
   position: absolute;
   inset: 12mm;
-  padding: 16mm 20mm;
+  padding: 11mm 20mm 9mm;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,7 +229,7 @@ body {
   letter-spacing: 0.06em;
   line-height: 1.2;
   color: var(--gold);
-  margin-bottom: 5mm;
+  margin-bottom: 3.5mm;
   flex: none;
 }
 
@@ -229,7 +245,7 @@ body {
 
 .cert-title {
   font-family: var(--font-en);
-  font-size: 27pt;
+  font-size: 25pt;
   font-weight: 400;
   letter-spacing: 0.02em;
   margin: 0 0 2mm;
@@ -237,9 +253,9 @@ body {
 }
 
 .cert-title-km {
-  font-size: 13pt;
+  font-size: 12.5pt;
   color: var(--ink-2);
-  margin: 0 0 7mm;
+  margin: 0 0 5mm;
 }
 
 .presented {
@@ -251,7 +267,7 @@ body {
 
 .recipient {
   font-family: var(--font-en);
-  font-size: 30pt;
+  font-size: 28pt;
   font-weight: 700;
   color: var(--ink);
   line-height: 1.2;
@@ -263,7 +279,7 @@ body {
 .recipient-km {
   font-size: 12pt;
   color: var(--ink-2);
-  margin: 0 0 4mm;
+  margin: 0 0 3mm;
   min-height: 1em;
 }
 
@@ -271,7 +287,7 @@ body {
   width: 78mm;
   height: 1px;
   background: var(--edge);
-  margin: 0 0 6mm;
+  margin: 0 0 4.5mm;
   position: relative;
 }
 .rule::after {
@@ -325,7 +341,7 @@ body {
   justify-content: center;
   gap: 34mm;
   width: 100%;
-  margin-top: 8mm;
+  margin-top: 5mm;
   flex-wrap: wrap;
 }
 
@@ -378,21 +394,6 @@ body {
   font-size: 6.8pt;
   color: var(--ink-3);
   letter-spacing: 0.03em;
-}
-
-/* Watermark */
-.watermark {
-  position: absolute;
-  right: -18mm;
-  bottom: -22mm;
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 96pt;
-  font-weight: 800;
-  color: var(--gold);
-  opacity: 0.045;
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  white-space: nowrap;
 }
 
 /* ---------------- Print ---------------- */
@@ -503,7 +504,7 @@ body {
 </div>
 
 <div class="stage">
-  <p class="stage-label no-print">មើលជាមុន · Preview</p>
+  <p class="stage-label no-print"><span class="km">មើលជាមុន</span> · Preview</p>
   <div id="output"></div>
 </div>
 
@@ -554,7 +555,6 @@ body {
         '<span class="corner tl"></span><span class="corner tr"></span>' +
         '<span class="corner bl"></span><span class="corner br"></span>' +
       '</div>' +
-      '<div class="watermark">AI</div>' +
       '<div class="content">' +
         '<div class="crest">SKILL<br>NEXT</div>' +
         '<div class="cert-kicker">Skill Next · Cambodia</div>' +

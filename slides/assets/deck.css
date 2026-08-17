@@ -21,7 +21,10 @@ body {
   position: absolute;
   inset: 0;
   display: none;
-  padding: clamp(28px, 5vh, 64px) clamp(24px, 6vw, 96px);
+  /* Extra bottom padding keeps content clear of the fixed footer,
+     which is overlaid rather than in flow. */
+  padding: clamp(28px, 5vh, 64px) clamp(24px, 6vw, 96px)
+           clamp(84px, 11vh, 110px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
@@ -299,7 +302,7 @@ body {
 
 /* Concept card (AI / Agent / Automation) */
 .concept {
-  padding: 20px 22px;
+  padding: 17px 22px;
   border-radius: var(--r-md);
   background: var(--surface-2);
   border: 1px solid var(--border-soft);
@@ -318,12 +321,12 @@ body {
 }
 
 .concept h3 { margin-bottom: 6px; }
-.concept p { font-size: 0.94rem; color: var(--text-2); margin-bottom: 12px; }
+.concept p { font-size: 0.94rem; color: var(--text-2); margin-bottom: 10px; }
 
 .concept .example {
   font-size: 0.86rem;
   color: var(--muted);
-  padding-top: 12px;
+  padding-top: 10px;
   border-top: 1px solid var(--border);
 }
 
@@ -336,7 +339,7 @@ body {
 }
 
 .callout {
-  margin-top: 26px;
+  margin-top: 20px;
   padding: 20px 24px;
   border-left: 3px solid var(--accent);
   background: rgba(74, 222, 128, 0.06);

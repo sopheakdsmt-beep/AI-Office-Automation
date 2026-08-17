@@ -5,6 +5,20 @@
    library, certificates and teaching tools.
    ============================================================ */
 
+/* Khmer script needs a font that stacks subscripts and vowel signs
+   correctly. Many machines (and most Linux containers) have no Khmer
+   font at all and fall back to a bitmap face that breaks the glyph
+   clusters, so the font ships with the repo instead of being assumed.
+   Variable file — covers both 400 and 700. */
+@font-face {
+  font-family: "AIOA Khmer";
+  src: url("fonts/noto-sans-khmer.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;
+}
+
 :root {
   /* Surfaces */
   --bg:          #050706;
@@ -28,9 +42,21 @@
   --faint:       #4a544e;
 
   /* Type */
-  --font-latin:  "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-khmer:  "Kantumruy Pro", "Noto Sans Khmer", "Khmer OS Battambang",
-                 "Khmer OS", "Nokora", sans-serif;
+  /* The bundled Khmer face is unicode-range limited to Khmer, so it can
+     sit inside the Latin stack too: Latin glyphs come from Inter, Khmer
+     glyphs from the bundled face. Without this, Khmer appearing inside a
+     Latin-styled element (pill, counter, label) falls through to the
+     generic sans-serif, which on many systems is a bitmap face that
+     breaks Khmer glyph clusters. */
+  --font-latin:  "Inter", "Segoe UI", system-ui, -apple-system,
+                 "AIOA Khmer", "Noto Sans Khmer", "Khmer UI",
+                 "Khmer Sangam MN", "Khmer OS Battambang", sans-serif;
+
+  /* Bundled font first, then the faces Windows / macOS / Linux ship with. */
+  --font-khmer:  "AIOA Khmer", "Noto Sans Khmer", "Kantumruy Pro",
+                 "Khmer UI",                      /* Windows */
+                 "Khmer Sangam MN", "Khmer MN",   /* macOS */
+                 "Khmer OS Battambang", "Khmer OS", "Nokora", sans-serif;
   --font-ui:     var(--font-khmer), var(--font-latin);
   --font-mono:   "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
 
@@ -91,6 +117,15 @@ body {
 .accent { color: var(--accent); }
 .muted  { color: var(--muted); }
 .dim    { color: var(--text-2); }
+
+/* Khmer inside a wide-tracked, uppercased Latin label. Letter-spacing
+   pulls Khmer glyph clusters apart and uppercasing does nothing for the
+   script, so opt out of both. */
+.km {
+  font-family: var(--font-khmer);
+  letter-spacing: normal;
+  text-transform: none;
+}
 
 h1, h2, h3, h4 {
   margin: 0 0 0.5em;

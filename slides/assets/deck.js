@@ -211,6 +211,13 @@
   btnFull.addEventListener('click', toggleFullscreen);
   document.getElementById('timerReset').addEventListener('click', resetTimer);
 
+  // Deep links: react to the hash changing after load (edited URL,
+  // browser back/forward, or a link shared as .../index.html#12).
+  window.addEventListener('hashchange', function () {
+    var n = parseInt((location.hash || '').replace('#', ''), 10);
+    if (!isNaN(n)) go(n - 1);
+  });
+
   // Touch swipe
   var touchX = null;
   document.addEventListener('touchstart', function (e) {
